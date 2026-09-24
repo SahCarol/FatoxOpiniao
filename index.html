@@ -21,12 +21,38 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Segoe UI', Roboto, Arial, sans-serif;
-      background: var(--bg);
       color: var(--text);
       line-height: 1.6;
       padding: 20px;
       padding-top: 90px;
+      min-height: 100vh;
+      position: relative;
+      background-color: var(--bg);
     }
+
+    /* 🖼️ Wallpaper de fundo */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url('https://i.imgur.com/rQyiJNw.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      z-index: -2;
+    }
+
+    /* 🌫️ Camada de sobreposição para melhorar a leitura */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.55);
+      z-index: -1;
+      pointer-events: none;
+    }
+
     .container { max-width: 800px; margin: 0 auto; }
 
     /* ================= PLAYER DE MÚSICA ================= */
@@ -104,8 +130,14 @@
 
     /* ================= CABEÇALHO ================= */
     header { text-align: center; margin-bottom: 20px; }
-    header h1 { color: var(--primary); font-size: 1.7rem; margin-bottom: 8px; }
-    header p { color: var(--muted); font-size: 0.95rem; }
+    header h1 {
+      color: var(--primary); font-size: 1.7rem; margin-bottom: 8px;
+      text-shadow: 0 2px 8px rgba(255,255,255,0.9);
+    }
+    header p {
+      color: var(--primary); font-size: 0.95rem;
+      text-shadow: 0 1px 6px rgba(255,255,255,0.9);
+    }
 
     /* ================= BOTÃO DICA GERAL ================= */
     .top-actions {
@@ -171,8 +203,9 @@
 
     /* ================= PROGRESSO ================= */
     .progress-bar {
-      background: #e0e0e0; border-radius: 20px; height: 10px;
+      background: rgba(255,255,255,0.85); border-radius: 20px; height: 10px;
       margin-bottom: 6px; overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
     }
     .progress-fill {
       background: linear-gradient(90deg, #3498db, #2ecc71);
@@ -180,15 +213,43 @@
     }
     .progress-info {
       display: flex; justify-content: space-between;
-      font-size: 0.85rem; color: var(--muted); margin-bottom: 20px;
+      font-size: 0.85rem; color: var(--primary);
+      margin-bottom: 10px;
+      font-weight: 600;
+      text-shadow: 0 1px 4px rgba(255,255,255,0.9);
     }
     .progress-info .pct { font-weight: 700; color: var(--accent); }
+
+    /* ================= CONTADOR ACERTOS/ERROS ================= */
+    .score-tracker {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 20px;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+    .score-tracker .tracker-acertos {
+      color: #1e8449;
+      background: #d5f5e3;
+      padding: 6px 16px;
+      border-radius: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    .score-tracker .tracker-erros {
+      color: #922b21;
+      background: #fadbd8;
+      padding: 6px 16px;
+      border-radius: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    .score-tracker.hidden { display: none; }
 
     /* ================= CARD DA QUESTÃO ================= */
     .question-card {
       background: var(--card); border-radius: 12px;
       padding: 26px; margin-bottom: 20px;
-      box-shadow: 0 3px 14px rgba(0,0,0,0.07);
+      box-shadow: 0 3px 14px rgba(0,0,0,0.12);
       border: 1px solid var(--border);
       animation: cardIn 0.35s ease;
     }
@@ -225,8 +286,58 @@
     }
     .option:hover { border-color: var(--accent); background: #f0f7ff; }
     .option.selected { border-color: var(--accent); background: #eaf4fd; }
+    .option.correct {
+      border-color: var(--success);
+      background: #eafaf1;
+      box-shadow: 0 0 0 2px rgba(39,174,96,0.15);
+    }
+    .option.wrong {
+      border-color: var(--danger);
+      background: #fdedec;
+      box-shadow: 0 0 0 2px rgba(231,76,60,0.15);
+    }
+    .option.locked {
+      cursor: default;
+      pointer-events: none;
+    }
+    .option.locked:hover { border-color: inherit; background: inherit; }
+    .option.locked.correct:hover { border-color: var(--success); background: #eafaf1; }
+    .option.locked.wrong:hover { border-color: var(--danger); background: #fdedec; }
     .option input { margin-top: 4px; accent-color: var(--accent); }
     .option label { cursor: pointer; flex: 1; font-size: 0.95rem; }
+    .option.locked label { cursor: default; }
+
+    /* ================= FEEDBACK (justificativa) ================= */
+    .feedback-box {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-radius: 10px;
+      animation: cardIn 0.3s ease;
+    }
+    .feedback-box.correct {
+      background: #eafaf1;
+      border-left: 5px solid var(--success);
+    }
+    .feedback-box.wrong {
+      background: #fdedec;
+      border-left: 5px solid var(--danger);
+    }
+    .feedback-box .feedback-title {
+      font-weight: 800;
+      font-size: 1rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .feedback-box.correct .feedback-title { color: #1e8449; }
+    .feedback-box.wrong .feedback-title { color: #922b21; }
+    .feedback-box .feedback-just {
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: #444;
+    }
+    .feedback-box .feedback-just strong { color: #2c3e50; }
 
     /* ================= CARD DA AULA ================= */
     .lesson-card {
@@ -235,30 +346,30 @@
       border-radius: 12px;
       padding: 28px;
       margin-bottom: 20px;
-      box-shadow: 0 3px 14px rgba(0,0,0,0.07);
+      box-shadow: 0 3px 14px rgba(0,0,0,0.12);
       border: 1px solid var(--border);
       border-top: 5px solid var(--accent);
       animation: cardIn 0.35s ease;
     }
 
-    /* 🖼️ Imagem da aula no canto superior direito */
+    /* 🖼️ Imagem da aula no canto INFERIOR direito */
     .lesson-image {
       position: absolute;
-      top: 16px;
-      right: 16px;
-      width: 120px;
-      height: 120px;
+      bottom: 20px;
+      right: 20px;
+      width: 220px;
+      height: 220px;
       object-fit: cover;
-      border-radius: 12px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
-      border: 3px solid #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+      border: 4px solid #ffffff;
       background: #f4f6f9;
       transition: transform 0.25s ease, box-shadow 0.25s ease;
       z-index: 2;
     }
     .lesson-image:hover {
-      transform: scale(1.05) rotate(-2deg);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.22);
+      transform: scale(1.04);
+      box-shadow: 0 8px 26px rgba(0,0,0,0.28);
     }
 
     .lesson-badge {
@@ -279,7 +390,6 @@
       font-size: 1.4rem;
       margin-bottom: 16px;
       line-height: 1.3;
-      padding-right: 140px;
     }
     .lesson-card h4 {
       color: #2471a3;
@@ -342,6 +452,7 @@
       display: flex; justify-content: space-between;
       gap: 12px; margin-top: 26px; flex-wrap: wrap;
       padding-top: 20px;
+      padding-right: 250px;
       border-top: 2px dashed var(--border);
     }
     .btn {
@@ -349,15 +460,17 @@
       font-size: 0.95rem; font-weight: 700;
       border: none; border-radius: 8px;
       cursor: pointer; transition: all 0.2s;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.12);
     }
     .btn-primary { background: var(--accent); color: #fff; }
     .btn-primary:hover { background: var(--accent-hover); }
     .btn-primary:disabled {
       background: #bdc3c7; cursor: not-allowed; opacity: 0.7;
+      box-shadow: none;
     }
     .btn-secondary { background: #95a5a6; color: #fff; }
     .btn-secondary:hover { background: #7f8c8d; }
-    .btn-secondary:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-secondary:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
     .btn-success {
       background: linear-gradient(135deg, #27ae60, #229954);
       color: #fff;
@@ -371,7 +484,7 @@
     /* ================= RESULTADOS ================= */
     .results {
       background: var(--card); border-radius: 12px;
-      padding: 28px; box-shadow: 0 3px 14px rgba(0,0,0,0.08);
+      padding: 28px; box-shadow: 0 3px 14px rgba(0,0,0,0.12);
       border: 1px solid var(--border);
     }
     .results h2 {
@@ -423,26 +536,25 @@
       .btn { width: 100%; }
       .nav-buttons, .lesson-nav { flex-direction: column; }
       .modal-content { padding: 22px 18px; }
+
+      /* No mobile a imagem fica centralizada, entre o conteúdo e os botões */
       .lesson-image {
-        width: 78px;
-        height: 78px;
-        top: 12px;
-        right: 12px;
+        position: static;
+        display: block;
+        margin: 22px auto 6px;
+        width: 180px;
+        height: 180px;
+        border-width: 3px;
       }
-      .lesson-card h2 {
-        padding-right: 95px;
-        font-size: 1.1rem;
+      .lesson-nav {
+        padding-right: 0;
       }
     }
     @media (max-width: 400px) {
       .lesson-image {
-        width: 62px;
-        height: 62px;
+        width: 150px;
+        height: 150px;
         border-width: 2px;
-      }
-      .lesson-card h2 {
-        padding-right: 78px;
-        font-size: 1rem;
       }
     }
   </style>
@@ -519,6 +631,11 @@
   <div class="progress-info">
     <span id="progressText">Aula 1 de 3 — Gêneros Textuais</span>
     <span class="pct" id="progressPct">📖 Aula</span>
+  </div>
+
+  <div class="score-tracker hidden" id="scoreTracker">
+    <span class="tracker-acertos">✅ <strong id="trackerAcertos">0</strong> acertos</span>
+    <span class="tracker-erros">❌ <strong id="trackerErros">0</strong> erros</span>
   </div>
 
   <div id="questionArea"></div>
@@ -804,7 +921,7 @@ const questions = [
 ];
 
 // ============================================================
-// AULAS (mini-explicações antes de cada bloco)
+// AULAS
 // ============================================================
 const lessons = {
   "Gêneros Textuais": {
@@ -1040,7 +1157,7 @@ dicaGeralModal.addEventListener('click', (e) => {
 });
 
 // ============================================================
-// LÓGICA DO QUIZ — AULAS + UMA QUESTÃO POR VEZ
+// LÓGICA DO QUIZ
 // ============================================================
 const questionArea = document.getElementById('questionArea');
 const prevBtn = document.getElementById('prevBtn');
@@ -1051,12 +1168,28 @@ const progressText = document.getElementById('progressText');
 const progressPct = document.getElementById('progressPct');
 const resultsContainer = document.getElementById('resultsContainer');
 const navButtons = document.getElementById('navButtons');
+const scoreTracker = document.getElementById('scoreTracker');
+const trackerAcertos = document.getElementById('trackerAcertos');
+const trackerErros = document.getElementById('trackerErros');
 
 const eixosOrdem = ["Gêneros Textuais", "Fato x Opinião", "Linguagem Formal x Informal"];
 
 let currentIndex = 0;
-let view = 'lesson'; // 'lesson' | 'question'
+let view = 'lesson';
 const answers = {};
+
+// -------------------- PONTUAÇÃO --------------------
+function updateScoreTracker() {
+  let acertos = 0, erros = 0;
+  questions.forEach(q => {
+    if (answers[q.id] !== undefined) {
+      if (answers[q.id] === q.correta) acertos++;
+      else erros++;
+    }
+  });
+  trackerAcertos.textContent = acertos;
+  trackerErros.textContent = erros;
+}
 
 // -------------------- AULA --------------------
 function renderLesson() {
@@ -1067,12 +1200,12 @@ function renderLesson() {
 
   questionArea.innerHTML = `
     <div class="lesson-card">
-      <img src="https://i.imgur.com/Z0YRxE1.png"
-           alt="Ilustração da aula"
-           class="lesson-image">
       <span class="lesson-badge">📖 Aula ${lessonNum} de ${totalAulas}</span>
       <h2>${lesson.titulo}</h2>
       ${lesson.conteudo}
+      <img src="https://i.imgur.com/Z0YRxE1.png"
+           alt="Ilustração da aula"
+           class="lesson-image">
       <div class="lesson-nav">
         <button class="btn btn-secondary" id="lessonPrevBtn" ${currentIndex === 0 ? 'disabled' : ''}>◀ Voltar</button>
         <button class="btn btn-success" id="lessonStartBtn">Começar questões ▶</button>
@@ -1080,10 +1213,9 @@ function renderLesson() {
     </div>
   `;
 
-  // Esconder a navegação principal durante a aula
   navButtons.classList.add('hidden');
+  scoreTracker.classList.add('hidden');
 
-  // Botão Voltar da aula
   document.getElementById('lessonPrevBtn').addEventListener('click', () => {
     if (currentIndex > 0) {
       currentIndex--;
@@ -1092,13 +1224,11 @@ function renderLesson() {
     }
   });
 
-  // Botão Começar questões
   document.getElementById('lessonStartBtn').addEventListener('click', () => {
     view = 'question';
     renderQuestion();
   });
 
-  // Atualizar progresso
   const answered = Object.keys(answers).length;
   const pct = Math.round((answered / questions.length) * 100);
   progressFill.style.width = pct + '%';
@@ -1111,22 +1241,45 @@ function renderLesson() {
 // -------------------- QUESTÃO --------------------
 function renderQuestion() {
   navButtons.classList.remove('hidden');
+  scoreTracker.classList.remove('hidden');
 
   const q = questions[currentIndex];
   const nivelClass = q.nivel === 'Fácil' ? 'badge-facil'
                    : q.nivel === 'Médio' ? 'badge-medio' : 'badge-dificil';
-  const selected = answers[q.id];
+
+  const respondida = answers[q.id] !== undefined;
+  const userAnswer = answers[q.id];
+  const acertou = respondida && userAnswer === q.correta;
 
   let optionsHtml = '';
   q.opcoes.forEach((op, i) => {
-    const isSel = selected === i ? 'selected' : '';
+    let cls = '';
+    if (respondida) {
+      if (i === q.correta) cls = 'correct locked';
+      else if (i === userAnswer) cls = 'wrong locked';
+      else cls = 'locked';
+    }
     optionsHtml += `
-      <div class="option ${isSel}" data-opt="${i}">
-        <input type="radio" name="q${q.id}" id="q${q.id}o${i}" value="${i}" ${selected === i ? 'checked' : ''}>
+      <div class="option ${cls}" data-opt="${i}">
+        <input type="radio" name="q${q.id}" id="q${q.id}o${i}" value="${i}" ${userAnswer === i ? 'checked' : ''} disabled>
         <label for="q${q.id}o${i}">${String.fromCharCode(65 + i)}) ${op}</label>
       </div>
     `;
   });
+
+  let feedbackHtml = '';
+  if (respondida) {
+    feedbackHtml = `
+      <div class="feedback-box ${acertou ? 'correct' : 'wrong'}">
+        <div class="feedback-title">
+          ${acertou ? '✅ Você acertou!' : '❌ Você errou.'}
+        </div>
+        <div class="feedback-just">
+          <strong>Justificativa:</strong> ${q.justificativa}
+        </div>
+      </div>
+    `;
+  }
 
   questionArea.innerHTML = `
     <div class="question-card" id="q-${q.id}">
@@ -1141,19 +1294,20 @@ function renderQuestion() {
       <div class="options" id="opts-${q.id}">
         ${optionsHtml}
       </div>
+      ${feedbackHtml}
     </div>
   `;
 
-  questionArea.querySelectorAll('.option').forEach(opt => {
-    opt.addEventListener('click', () => {
-      const optIndex = parseInt(opt.dataset.opt);
-      questionArea.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
-      opt.classList.add('selected');
-      opt.querySelector('input').checked = true;
-      answers[q.id] = optIndex;
-      updateNavButtons();
+  if (!respondida) {
+    questionArea.querySelectorAll('.option').forEach(opt => {
+      opt.addEventListener('click', () => {
+        const optIndex = parseInt(opt.dataset.opt);
+        answers[q.id] = optIndex;
+        updateScoreTracker();
+        renderQuestion();
+      });
     });
-  });
+  }
 
   updateProgressBar();
   updateNavButtons();
@@ -1200,7 +1354,6 @@ nextBtn.addEventListener('click', () => {
 
     currentIndex++;
 
-    // Se mudou de assunto → mostra aula antes das questões do novo bloco
     if (eixoAtual !== proximoEixo) {
       view = 'lesson';
       renderLesson();
@@ -1217,6 +1370,7 @@ nextBtn.addEventListener('click', () => {
 finishBtn.addEventListener('click', () => {
   questionArea.classList.add('hidden');
   navButtons.classList.add('hidden');
+  scoreTracker.classList.add('hidden');
   document.querySelector('.progress-bar').style.display = 'none';
   document.querySelector('.progress-info').style.display = 'none';
 
@@ -1284,7 +1438,7 @@ finishBtn.addEventListener('click', () => {
 });
 
 // ============================================================
-// INICIALIZA O QUIZ — começa com a Aula 1
+// INICIALIZA
 // ============================================================
 renderLesson();
 </script>
