@@ -29,12 +29,9 @@
       position: relative;
       background-color: var(--bg);
     }
-
-    /* 🖼️ Wallpaper de fundo */
     body::before {
       content: '';
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       background-image: url('https://i.imgur.com/rQyiJNw.jpeg');
       background-size: cover;
       background-position: center;
@@ -44,8 +41,7 @@
     }
     body::after {
       content: '';
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       background: rgba(255, 255, 255, 0.55);
       z-index: -1;
       pointer-events: none;
@@ -55,55 +51,30 @@
 
     /* ================= BOTÃO DE MÚSICA (FAB) ================= */
     .music-fab {
-      position: fixed;
-      top: 16px;
-      right: 16px;
-      z-index: 1500;
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
+      position: fixed; top: 16px; right: 16px; z-index: 1500;
+      width: 52px; height: 52px; border-radius: 50%;
       background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-      color: #fff;
-      border: 2px solid rgba(255,255,255,0.9);
-      cursor: pointer;
-      font-size: 1.4rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      color: #fff; border: 2px solid rgba(255,255,255,0.9);
+      cursor: pointer; font-size: 1.4rem;
+      display: flex; align-items: center; justify-content: center;
       box-shadow: 0 4px 14px rgba(0,0,0,0.25);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .music-fab:hover {
-      transform: scale(1.08);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.35);
-    }
-    .music-fab .note-icon {
-      animation: pulse 1.8s infinite;
-      display: inline-block;
-    }
-    .music-fab.paused .note-icon {
-      animation: none;
-      opacity: 0.55;
-    }
+    .music-fab:hover { transform: scale(1.08); box-shadow: 0 6px 20px rgba(0,0,0,0.35); }
+    .music-fab .note-icon { animation: pulse 1.8s infinite; display: inline-block; }
+    .music-fab.paused .note-icon { animation: none; opacity: 0.55; }
     @keyframes pulse {
       0%, 100% { transform: scale(1); opacity: 1; }
       50% { transform: scale(1.15); opacity: 0.75; }
     }
 
-    /* ================= MINI-MENU ================= */
     .music-menu {
-      position: fixed;
-      top: 78px;
-      right: 16px;
-      z-index: 1500;
-      background: #ffffff;
-      border-radius: 14px;
+      position: fixed; top: 78px; right: 16px; z-index: 1500;
+      background: #ffffff; border-radius: 14px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.22);
       border: 1px solid var(--border);
-      padding: 16px 18px;
-      width: 250px;
-      display: none;
-      animation: menuIn 0.22s ease;
+      padding: 16px 18px; width: 250px;
+      display: none; animation: menuIn 0.22s ease;
     }
     .music-menu.show { display: block; }
     @keyframes menuIn {
@@ -111,173 +82,92 @@
       to { opacity: 1; transform: translateY(0); }
     }
     .music-menu h4 {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.6px;
-      color: var(--muted);
-      margin-bottom: 12px;
-      border-bottom: 1px solid var(--border);
+      font-size: 0.78rem; text-transform: uppercase;
+      letter-spacing: 0.6px; color: var(--muted);
+      margin-bottom: 12px; border-bottom: 1px solid var(--border);
       padding-bottom: 8px;
     }
     .music-menu-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      width: 100%;
-      padding: 10px 12px;
-      border: none;
-      border-radius: 8px;
-      background: #f8f9fa;
-      color: var(--primary);
-      font-size: 0.92rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.18s ease;
-      margin-bottom: 8px;
-      text-align: left;
+      display: flex; align-items: center; gap: 10px;
+      width: 100%; padding: 10px 12px;
+      border: none; border-radius: 8px;
+      background: #f8f9fa; color: var(--primary);
+      font-size: 0.92rem; font-weight: 600;
+      cursor: pointer; transition: background 0.18s ease;
+      margin-bottom: 8px; text-align: left;
     }
     .music-menu-item:hover { background: #eaf4fd; }
-    .music-menu-item .icon {
-      font-size: 1.05rem;
-      width: 22px;
-      text-align: center;
-    }
+    .music-menu-item .icon { font-size: 1.05rem; width: 22px; text-align: center; }
     .music-menu-volume {
-      padding: 10px 12px;
-      border-radius: 8px;
-      background: #f8f9fa;
-      margin-bottom: 8px;
+      padding: 10px 12px; border-radius: 8px;
+      background: #f8f9fa; margin-bottom: 8px;
     }
     .music-menu-volume label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--primary);
-      margin-bottom: 6px;
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.85rem; font-weight: 600;
+      color: var(--primary); margin-bottom: 6px;
     }
     .music-menu-volume label span:last-child {
-      margin-left: auto;
-      font-weight: 700;
-      color: var(--accent);
+      margin-left: auto; font-weight: 700; color: var(--accent);
     }
     .menu-volume-slider {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 100%;
-      height: 5px;
-      border-radius: 5px;
-      background: #d5dbdf;
-      outline: none;
-      cursor: pointer;
+      -webkit-appearance: none; appearance: none;
+      width: 100%; height: 5px; border-radius: 5px;
+      background: #d5dbdf; outline: none; cursor: pointer;
     }
     .menu-volume-slider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: var(--accent);
-      cursor: pointer;
+      -webkit-appearance: none; appearance: none;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--accent); cursor: pointer;
       box-shadow: 0 0 4px rgba(0,0,0,0.3);
     }
     .menu-volume-slider::-moz-range-thumb {
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: var(--accent);
-      cursor: pointer;
-      border: none;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--accent); cursor: pointer; border: none;
       box-shadow: 0 0 4px rgba(0,0,0,0.3);
     }
 
     /* ================= MODAL DA LETRA ================= */
     .lyrics-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.6);
-      z-index: 2500;
-      padding: 20px;
-      justify-content: center;
-      align-items: flex-start;
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.6); z-index: 2500; padding: 20px;
+      justify-content: center; align-items: flex-start;
       overflow-y: auto;
     }
     .lyrics-overlay.show { display: flex; }
     .lyrics-content {
-      background: #ffffff;
-      max-width: 620px;
-      width: 100%;
-      border-radius: 16px;
-      padding: 30px 34px;
+      background: #ffffff; max-width: 620px; width: 100%;
+      border-radius: 16px; padding: 30px 34px;
       box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-      margin: 30px auto;
-      animation: fadeIn 0.3s ease;
-      max-height: calc(100vh - 80px);
-      overflow-y: auto;
+      margin: 30px auto; animation: fadeIn 0.3s ease;
+      max-height: calc(100vh - 80px); overflow-y: auto;
     }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-10px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .lyrics-content h2 {
-      color: var(--primary);
-      text-align: center;
-      margin-bottom: 8px;
-      font-size: 1.4rem;
-    }
-    .lyrics-content .lyrics-sub {
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.85rem;
-      margin-bottom: 24px;
-    }
-    .lyrics-body {
-      font-size: 1rem;
-      line-height: 1.85;
-      color: #2c3e50;
-      text-align: center;
-      white-space: pre-line;
-    }
-    .lyrics-body .verse {
-      margin-bottom: 22px;
-    }
-    .lyrics-body .chorus {
-      font-weight: 700;
-      color: var(--accent);
-    }
+    .lyrics-content h2 { color: var(--primary); text-align: center; margin-bottom: 8px; font-size: 1.4rem; }
+    .lyrics-content .lyrics-sub { text-align: center; color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+    .lyrics-body { font-size: 1rem; line-height: 1.85; color: #2c3e50; text-align: center; }
+    .lyrics-body .verse { margin-bottom: 22px; }
+    .lyrics-body .chorus { font-weight: 700; color: var(--accent); }
     .lyrics-close {
-      display: block;
-      margin: 26px auto 0;
-      background: var(--primary);
-      color: #fff;
-      border: none;
-      padding: 12px 34px;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.2s;
+      display: block; margin: 26px auto 0;
+      background: var(--primary); color: #fff;
+      border: none; padding: 12px 34px; border-radius: 8px;
+      font-size: 0.95rem; font-weight: 700;
+      cursor: pointer; transition: background 0.2s;
     }
     .lyrics-close:hover { background: #1a252f; }
 
-    /* ================= AVISO DE AUTOPLAY ================= */
     .autoplay-notice {
-      position: fixed;
-      top: 80px;
-      left: 50%;
+      position: fixed; top: 80px; left: 50%;
       transform: translateX(-50%);
-      background: #f39c12;
-      color: #fff;
-      padding: 10px 22px;
-      border-radius: 30px;
-      font-size: 0.85rem;
-      font-weight: 600;
+      background: #f39c12; color: #fff;
+      padding: 10px 22px; border-radius: 30px;
+      font-size: 0.85rem; font-weight: 600;
       box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-      z-index: 1400;
-      cursor: pointer;
-      display: none;
+      z-index: 1400; cursor: pointer; display: none;
       animation: slideDown 0.4s ease;
     }
     .autoplay-notice.show { display: block; }
@@ -306,7 +196,6 @@
       text-shadow: 0 1px 6px rgba(255,255,255,0.9);
     }
 
-    /* ================= BOTÃO DICA GERAL ================= */
     .top-actions {
       display: flex; justify-content: center; gap: 12px; margin-bottom: 20px;
       flex-wrap: wrap;
@@ -320,11 +209,9 @@
     }
     .btn-dica-geral:hover { transform: translateY(-2px); box-shadow: 0 5px 14px rgba(243,156,18,0.5); }
 
-    /* ================= MODAL DICA GERAL ================= */
     .modal-overlay {
-      display: none;
-      position: fixed; inset: 0; background: rgba(0,0,0,0.55);
-      z-index: 2000; padding: 20px;
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.55); z-index: 2000; padding: 20px;
       justify-content: center; align-items: flex-start;
       overflow-y: auto;
     }
@@ -336,19 +223,13 @@
       margin: 20px auto; animation: fadeIn 0.3s ease;
       max-height: calc(100vh - 60px); overflow-y: auto;
     }
-    .modal-content h2 {
-      color: var(--primary); text-align: center;
-      margin-bottom: 18px; font-size: 1.4rem;
-    }
+    .modal-content h2 { color: var(--primary); text-align: center; margin-bottom: 18px; font-size: 1.4rem; }
     .modal-content h3 {
       color: #b9770e; margin-top: 20px; margin-bottom: 8px;
       font-size: 1.05rem;
-      border-left: 4px solid var(--warning);
-      padding-left: 10px;
+      border-left: 4px solid var(--warning); padding-left: 10px;
     }
-    .modal-content p, .modal-content li {
-      font-size: 0.92rem; color: #444; margin-bottom: 6px;
-    }
+    .modal-content p, .modal-content li { font-size: 0.92rem; color: #444; margin-bottom: 6px; }
     .modal-content ul { padding-left: 22px; margin-bottom: 8px; }
     .modal-content .destaque {
       background: #fef9e7; padding: 10px 14px;
@@ -366,8 +247,8 @@
 
     /* ================= PROGRESSO ================= */
     .progress-bar {
-      background: rgba(255,255,255,0.85); border-radius: 20px; height: 10px;
-      margin-bottom: 6px; overflow: hidden;
+      background: rgba(255,255,255,0.85); border-radius: 20px;
+      height: 10px; margin-bottom: 6px; overflow: hidden;
       box-shadow: 0 2px 6px rgba(0,0,0,0.08);
     }
     .progress-fill {
@@ -377,20 +258,14 @@
     .progress-info {
       display: flex; justify-content: space-between;
       font-size: 0.85rem; color: var(--primary);
-      margin-bottom: 10px;
-      font-weight: 600;
+      margin-bottom: 10px; font-weight: 600;
       text-shadow: 0 1px 4px rgba(255,255,255,0.9);
     }
     .progress-info .pct { font-weight: 700; color: var(--accent); }
 
-    /* ================= CONTADOR ACERTOS/ERROS ================= */
     .score-tracker {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      margin-bottom: 20px;
-      font-size: 0.88rem;
-      font-weight: 600;
+      display: flex; justify-content: center; gap: 16px;
+      margin-bottom: 20px; font-size: 0.88rem; font-weight: 600;
     }
     .score-tracker .tracker-acertos {
       color: #1e8449; background: #d5f5e3;
@@ -421,9 +296,7 @@
       align-items: center; margin-bottom: 14px;
       flex-wrap: wrap; gap: 8px;
     }
-    .question-number {
-      font-weight: 700; color: var(--accent); font-size: 0.9rem;
-    }
+    .question-number { font-weight: 700; color: var(--accent); font-size: 0.9rem; }
     .badge {
       font-size: 0.72rem; font-weight: 700; padding: 3px 10px;
       border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px;
@@ -432,10 +305,7 @@
     .badge-medio { background: #fdebd0; color: #b9770e; }
     .badge-dificil { background: #fadbd8; color: #b03a2e; }
     .badge-eixo { background: #eaf2f8; color: #2471a3; font-weight: 600; }
-    .question-text {
-      font-size: 1.05rem; margin-bottom: 18px;
-      color: #2c3e50; font-weight: 500;
-    }
+    .question-text { font-size: 1.05rem; margin-bottom: 18px; color: #2c3e50; font-weight: 500; }
     .options { display: flex; flex-direction: column; gap: 10px; }
     .option {
       display: flex; align-items: flex-start; gap: 10px;
@@ -461,7 +331,6 @@
     .option label { cursor: pointer; flex: 1; font-size: 0.95rem; }
     .option.locked label { cursor: default; }
 
-    /* ================= FEEDBACK ================= */
     .feedback-box {
       margin-top: 18px; padding: 16px 18px;
       border-radius: 10px; animation: cardIn 0.3s ease;
@@ -474,9 +343,7 @@
     }
     .feedback-box.correct .feedback-title { color: #1e8449; }
     .feedback-box.wrong .feedback-title { color: #922b21; }
-    .feedback-box .feedback-just {
-      font-size: 0.92rem; line-height: 1.55; color: #444;
-    }
+    .feedback-box .feedback-just { font-size: 0.92rem; line-height: 1.55; color: #444; }
     .feedback-box .feedback-just strong { color: #2c3e50; }
 
     /* ================= CARD DA AULA ================= */
@@ -494,12 +361,10 @@
     .lesson-image {
       position: absolute; bottom: 10px; right: 10px;
       width: 200px; height: auto; max-height: 250px;
-      object-fit: contain;
-      background: transparent; border: none;
-      border-radius: 0; box-shadow: none;
+      object-fit: contain; background: transparent;
+      border: none; border-radius: 0; box-shadow: none;
       transition: transform 0.25s ease;
-      z-index: 2;
-      pointer-events: none;
+      z-index: 2; pointer-events: none;
     }
     .lesson-image:hover { transform: scale(1.05); }
 
@@ -512,10 +377,7 @@
       letter-spacing: 0.6px;
       box-shadow: 0 2px 6px rgba(52,152,219,0.3);
     }
-    .lesson-card h2 {
-      color: var(--primary); font-size: 1.4rem;
-      margin-bottom: 16px; line-height: 1.3;
-    }
+    .lesson-card h2 { color: var(--primary); font-size: 1.4rem; margin-bottom: 16px; line-height: 1.3; }
     .lesson-card h4 {
       color: #2471a3; margin-top: 20px; margin-bottom: 8px;
       font-size: 1rem;
@@ -580,50 +442,229 @@
       transform: none; box-shadow: none;
     }
 
-    /* ================= RESULTADOS ================= */
+    /* ================= RESULTADOS — NOVO LAYOUT ================= */
     .results {
       background: var(--card); border-radius: 12px;
       padding: 28px; box-shadow: 0 3px 14px rgba(0,0,0,0.12);
       border: 1px solid var(--border);
     }
     .results h2 { color: var(--primary); margin-bottom: 16px; text-align: center; }
-    .score-box {
-      text-align: center; font-size: 2.4rem;
-      font-weight: 800; color: var(--accent); margin: 16px 0;
+
+    .overall-score {
+      text-align: center;
+      margin-bottom: 24px;
+      padding: 20px;
+      background: linear-gradient(135deg, #eaf4fd 0%, #f0f7ff 100%);
+      border-radius: 12px;
+      border: 1px solid #d6eaf8;
     }
-    .score-detail { text-align: center; color: var(--muted); margin-bottom: 24px; }
-    .review-item { border-top: 1px solid var(--border); padding: 18px 0; }
-    .review-item:first-of-type { border-top: none; }
+    .overall-score .score-value {
+      font-size: 2.6rem; font-weight: 800;
+      color: var(--accent); line-height: 1;
+      margin-bottom: 6px;
+    }
+    .overall-score .score-label {
+      font-size: 0.85rem; color: var(--muted);
+      font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Cards de categoria */
+    .category-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .category-card {
+      padding: 16px 12px;
+      border-radius: 12px;
+      border: 2px solid var(--border);
+      background: #fff;
+      text-align: center;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .category-card:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,0.1); }
+    .category-card.active {
+      border-color: var(--accent);
+      box-shadow: 0 6px 16px rgba(52,152,219,0.25);
+    }
+    .category-card .cat-icon {
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .category-card .cat-name {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: var(--primary);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+    .category-card .cat-score {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+      color: var(--primary);
+      line-height: 1;
+    }
+    .category-card .cat-score small {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .category-card .cat-grade {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .grade-excelente { background: #d5f5e3; color: #1e8449; }
+    .grade-bom { background: #d6eaf8; color: #2471a3; }
+    .grade-regular { background: #fdebd0; color: #b9770e; }
+    .grade-melhorar { background: #fadbd8; color: #b03a2e; }
+
+    /* Abas de filtro */
+    .review-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .tab-btn {
+      padding: 8px 16px;
+      border: 1.5px solid var(--border);
+      background: #fff;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+    .tab-btn:hover { border-color: var(--accent); }
+    .tab-btn.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      box-shadow: 0 3px 10px rgba(52,152,219,0.35);
+    }
+    .tab-btn .tab-count {
+      display: inline-block;
+      margin-left: 4px;
+      opacity: 0.85;
+      font-size: 0.72rem;
+    }
+
+    /* Revisão */
+    .review-list { margin-top: 8px; }
+    .review-item { border-top: 1px solid var(--border); padding: 16px 0; }
+    .review-item:first-child { border-top: none; }
     .review-header {
       display: flex; justify-content: space-between;
       align-items: center; margin-bottom: 8px;
       flex-wrap: wrap; gap: 6px;
     }
     .review-status {
-      font-weight: 700; font-size: 0.85rem;
+      font-weight: 700; font-size: 0.8rem;
       padding: 3px 10px; border-radius: 12px;
     }
     .review-status.correct { background: #d5f5e3; color: #1e8449; }
     .review-status.wrong { background: #fadbd8; color: #b03a2e; }
-    .review-question { font-weight: 600; margin-bottom: 6px; color: #2c3e50; }
-    .review-answer { font-size: 0.9rem; margin-bottom: 4px; }
+    .review-question { font-weight: 600; margin-bottom: 6px; color: #2c3e50; font-size: 0.95rem; }
+    .review-answer { font-size: 0.88rem; margin-bottom: 4px; }
     .review-answer.correct { color: var(--success); }
     .review-answer.wrong { color: var(--danger); }
     .review-justificativa {
-      font-size: 0.88rem; color: #555;
+      font-size: 0.85rem; color: #555;
       background: #f8f9fa; padding: 10px 14px;
       border-radius: 6px; margin-top: 8px;
       border-left: 3px solid var(--accent);
     }
+
+    /* Observações */
     .observacoes {
       background: #fff8e1; border-radius: 12px;
-      padding: 24px; margin-top: 30px;
+      padding: 20px 24px; margin-top: 24px;
       border: 1px solid #f9e79f;
     }
-    .observacoes h3 { color: #b9770e; margin-bottom: 12px; }
-    .observacoes ul { padding-left: 20px; }
-    .observacoes li { margin-bottom: 8px; font-size: 0.92rem; color: #5d4e0e; }
+    .observacoes h3 {
+      color: #b9770e; margin-bottom: 12px;
+      font-size: 1rem;
+    }
+    .observacoes .obs-group {
+      margin-bottom: 12px;
+    }
+    .observacoes .obs-group:last-child { margin-bottom: 0; }
+    .observacoes .obs-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #7d6608;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-bottom: 4px;
+    }
+    .observacoes p {
+      font-size: 0.88rem;
+      color: #5d4e0e;
+      margin-bottom: 4px;
+      padding-left: 14px;
+      position: relative;
+    }
+    .observacoes p::before {
+      content: '•';
+      position: absolute;
+      left: 2px;
+      color: var(--warning);
+      font-weight: 700;
+    }
+
+    .reset-area {
+      text-align: center;
+      margin-top: 24px;
+    }
+
     .hidden { display: none; }
+
+    @media (max-width: 700px) {
+      .category-cards {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .category-card {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 14px 16px;
+        text-align: left;
+      }
+      .category-card .cat-icon {
+        margin: 0;
+        font-size: 1.4rem;
+      }
+      .category-card .cat-name {
+        margin: 0;
+        flex: 1;
+        text-align: left;
+      }
+      .category-card .cat-score {
+        margin: 0;
+        font-size: 1.3rem;
+      }
+      .category-card .cat-grade {
+        flex-shrink: 0;
+      }
+    }
 
     @media (max-width: 600px) {
       header h1 { font-size: 1.35rem; }
@@ -631,7 +672,6 @@
       .btn { width: 100%; }
       .nav-buttons, .lesson-nav { flex-direction: column; }
       .modal-content { padding: 22px 18px; }
-
       .lesson-image {
         position: static; display: block;
         margin: 18px auto 6px;
@@ -639,9 +679,12 @@
       }
       .lesson-warn { padding-right: 16px; }
       .lesson-nav { padding-right: 0; }
+      .results { padding: 20px 16px; }
+      .overall-score .score-value { font-size: 2.2rem; }
     }
     @media (max-width: 400px) {
       .lesson-image { width: 130px; }
+      .tab-btn { font-size: 0.72rem; padding: 6px 12px; }
     }
   </style>
 </head>
@@ -732,12 +775,10 @@
   </div>
 </div>
 
-<!-- ================= AVISO DE AUTOPLAY ================= -->
 <div class="autoplay-notice" id="autoplayNotice">
   🔇 Clique em qualquer lugar para tocar a música
 </div>
 
-<!-- ================= ÁUDIO ================= -->
 <audio id="bgMusic" loop preload="auto">
   <source src="Ftop.mp3" type="audio/mpeg">
   Seu navegador não suporta o elemento de áudio.
@@ -806,14 +847,29 @@
   <div id="resultsContainer" class="hidden">
     <div class="results">
       <h2>📊 Resultado Final</h2>
-      <div class="score-box" id="scoreBox"></div>
-      <div class="score-detail" id="scoreDetail"></div>
-      <div id="reviewContainer"></div>
+
+      <!-- Nota geral -->
+      <div class="overall-score">
+        <div class="score-value" id="scoreBox">0/50</div>
+        <div class="score-label" id="scoreDetail">Aproveitamento: 0%</div>
+      </div>
+
+      <!-- Cards por categoria -->
+      <div class="category-cards" id="categoryCards"></div>
+
+      <!-- Abas de filtro -->
+      <div class="review-tabs" id="reviewTabs"></div>
+
+      <!-- Lista de revisão -->
+      <div class="review-list" id="reviewContainer"></div>
+
+      <!-- Observações -->
       <div class="observacoes">
         <h3>🔍 Observações e Pontos de Melhoria</h3>
-        <ul id="observacoesList"></ul>
+        <div id="observacoesList"></div>
       </div>
-      <div style="text-align:center; margin-top:24px;">
+
+      <div class="reset-area">
         <button class="btn btn-secondary" onclick="location.reload()">🔄 Refazer Quiz</button>
       </div>
     </div>
@@ -1264,20 +1320,16 @@ document.addEventListener('click', firstInteraction);
 document.addEventListener('touchstart', firstInteraction);
 document.addEventListener('keydown', firstInteraction);
 
-// Toggle do menu ao clicar no FAB
 musicFab.addEventListener('click', (e) => {
   e.stopPropagation();
   musicMenu.classList.toggle('show');
 });
-
-// Fecha o menu se clicar fora
 document.addEventListener('click', (e) => {
   if (!musicMenu.contains(e.target) && e.target !== musicFab) {
     musicMenu.classList.remove('show');
   }
 });
 
-// Botão Play/Pause do menu
 menuPlayPause.addEventListener('click', (e) => {
   e.stopPropagation();
   if (bgMusic.paused) {
@@ -1288,7 +1340,6 @@ menuPlayPause.addEventListener('click', (e) => {
   }
 });
 
-// Slider de volume
 menuVolume.addEventListener('input', (e) => {
   const vol = parseFloat(e.target.value);
   bgMusic.volume = vol;
@@ -1302,7 +1353,6 @@ function updateVolIcon(vol) {
 }
 updateVolIcon(0.5);
 
-// Botão Letra — abre modal
 menuLyrics.addEventListener('click', (e) => {
   e.stopPropagation();
   lyricsOverlay.classList.add('show');
@@ -1310,7 +1360,6 @@ menuLyrics.addEventListener('click', (e) => {
   musicMenu.classList.remove('show');
 });
 
-// Fechar modal da letra
 lyricsClose.addEventListener('click', () => {
   lyricsOverlay.classList.remove('show');
   document.body.style.overflow = '';
@@ -1322,7 +1371,6 @@ lyricsOverlay.addEventListener('click', (e) => {
   }
 });
 
-// Aviso de autoplay clicável
 autoplayNotice.addEventListener('click', () => {
   bgMusic.play().then(() => {
     autoplayNotice.classList.remove('show');
@@ -1369,6 +1417,11 @@ const trackerAcertos = document.getElementById('trackerAcertos');
 const trackerErros = document.getElementById('trackerErros');
 
 const eixosOrdem = ["Gêneros Textuais", "Fato x Opinião", "Linguagem Formal x Informal"];
+const eixosIcones = {
+  "Gêneros Textuais": "📚",
+  "Fato x Opinião": "⚖️",
+  "Linguagem Formal x Informal": "💬"
+};
 
 let currentIndex = 0;
 let view = 'lesson';
@@ -1556,27 +1609,56 @@ nextBtn.addEventListener('click', () => {
   }
 });
 
-finishBtn.addEventListener('click', () => {
-  questionArea.classList.add('hidden');
-  navButtons.classList.add('hidden');
-  scoreTracker.classList.add('hidden');
-  document.querySelector('.progress-bar').style.display = 'none';
-  document.querySelector('.progress-info').style.display = 'none';
+// ============================================================
+// FUNÇÕES DE AVALIAÇÃO
+// ============================================================
+function getGrade(pct) {
+  if (pct >= 90) return { label: 'Excelente', cls: 'grade-excelente' };
+  if (pct >= 70) return { label: 'Bom', cls: 'grade-bom' };
+  if (pct >= 50) return { label: 'Regular', cls: 'grade-regular' };
+  return { label: 'Precisa melhorar', cls: 'grade-melhorar' };
+}
 
-  let acertos = 0;
-  let reviewHtml = '';
+function calcStats() {
+  const stats = {};
+  eixosOrdem.forEach(eixo => {
+    stats[eixo] = { total: 0, acertos: 0 };
+  });
+  questions.forEach(q => {
+    stats[q.eixo].total++;
+    if (answers[q.id] === q.correta) stats[q.eixo].acertos++;
+  });
+  // percentuais
+  eixosOrdem.forEach(eixo => {
+    const s = stats[eixo];
+    s.pct = Math.round((s.acertos / s.total) * 100);
+    s.grade = getGrade(s.pct);
+  });
+  return stats;
+}
 
-  questions.forEach((q, idx) => {
-    const userAnswer = answers[q.id];
-    const isCorrect = userAnswer === q.correta;
-    if (isCorrect) acertos++;
+// ============================================================
+// FINALIZAR QUIZ — Nova tela de resultados
+// ============================================================
+let currentFilter = 'all';
+let stats = null;
 
+function renderReview(filter) {
+  currentFilter = filter;
+  const container = document.getElementById('reviewContainer');
+
+  const filtered = questions
+    .map((q, idx) => ({ q, idx, userAnswer: answers[q.id], isCorrect: answers[q.id] === q.correta }))
+    .filter(item => filter === 'all' || item.q.eixo === filter);
+
+  container.innerHTML = filtered.map(item => {
+    const { q, idx, userAnswer, isCorrect } = item;
     const statusClass = isCorrect ? 'correct' : 'wrong';
     const statusText = isCorrect ? '✅ Acertou' : '❌ Errou';
     const userLetter = String.fromCharCode(65 + userAnswer);
     const correctLetter = String.fromCharCode(65 + q.correta);
 
-    reviewHtml += `
+    return `
       <div class="review-item">
         <div class="review-header">
           <span class="question-number">Questão ${idx + 1} — ${q.eixo} (${q.nivel})</span>
@@ -1586,41 +1668,100 @@ finishBtn.addEventListener('click', () => {
         <p class="review-answer ${isCorrect ? 'correct' : 'wrong'}">
           Sua resposta: ${userLetter}) ${q.opcoes[userAnswer]}
         </p>
-        <p class="review-answer correct">
-          Resposta correta: ${correctLetter}) ${q.opcoes[q.correta]}
-        </p>
+        ${!isCorrect ? `<p class="review-answer correct">Resposta correta: ${correctLetter}) ${q.opcoes[q.correta]}</p>` : ''}
         <div class="review-justificativa">📌 ${q.justificativa}</div>
       </div>
     `;
+  }).join('');
+
+  // Atualizar active nas tabs
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.filter === filter);
   });
 
-  const pct = Math.round((acertos / questions.length) * 100);
-  document.getElementById('scoreBox').textContent = `${acertos}/${questions.length}`;
-  document.getElementById('scoreDetail').innerHTML = `
-    Acertos: <strong>${acertos}</strong> • Erros: <strong>${questions.length - acertos}</strong> • Aproveitamento: <strong>${pct}%</strong>
-  `;
-  document.getElementById('reviewContainer').innerHTML = reviewHtml;
+  // Atualizar active nos cards de categoria
+  document.querySelectorAll('.category-card').forEach(card => {
+    card.classList.toggle('active', card.dataset.filter === filter);
+  });
+}
 
-  const obsList = document.getElementById('observacoesList');
-  const observacoes = [];
-  if (pct >= 90) {
-    observacoes.push('Excelente desempenho! Você domina os conceitos de gêneros textuais, fato/opinião e linguagem formal/informal.');
-    observacoes.push('Continue praticando a leitura de artigos de opinião em jornais e revistas para ampliar seu repertório argumentativo.');
-  } else if (pct >= 70) {
-    observacoes.push('Bom resultado! Você já compreende os conceitos principais, mas alguns pontos precisam de reforço.');
-    observacoes.push('Revise a diferença entre fato e opinião: fatos são verificáveis; opiniões expressam julgamentos de valor.');
-    observacoes.push('Pratique a identificação de marcas de subjetividade em artigos de opinião (verbos em 1ª pessoa, adjetivos avaliativos).');
-  } else if (pct >= 50) {
-    observacoes.push('Desempenho regular. É importante revisar os conceitos fundamentais de cada eixo.');
-    observacoes.push('Estude as características do artigo de opinião: texto argumentativo, assinado, com tema polêmico e defesa de tese.');
-    observacoes.push('Pratique a distinção entre linguagem formal (norma culta) e informal (coloquial, gírias, reduções).');
-  } else {
-    observacoes.push('Desempenho abaixo do esperado. Recomenda-se retomar os conteúdos desde o início.');
-    observacoes.push('Comece revisando as definições básicas: o que é fato, o que é opinião, o que é artigo de opinião.');
-    observacoes.push('Leia exemplos de artigos de opinião e sublinhe as marcas de subjetividade e os argumentos utilizados.');
-    observacoes.push('Pratique a identificação de linguagem formal e informal em textos do cotidiano (e-mails, mensagens, notícias).');
-  }
-  obsList.innerHTML = observacoes.map(o => `<li>${o}</li>`).join('');
+function buildResultsScreen() {
+  stats = calcStats();
+
+  let totalAcertos = 0;
+  questions.forEach(q => { if (answers[q.id] === q.correta) totalAcertos++; });
+  const pctGeral = Math.round((totalAcertos / questions.length) * 100);
+
+  document.getElementById('scoreBox').textContent = `${totalAcertos}/${questions.length}`;
+  document.getElementById('scoreDetail').innerHTML = `Aproveitamento geral: <strong>${pctGeral}%</strong>`;
+
+  // Cards por categoria
+  const cardsHtml = eixosOrdem.map(eixo => {
+    const s = stats[eixo];
+    return `
+      <div class="category-card" data-filter="${eixo}">
+        <span class="cat-icon">${eixosIcones[eixo]}</span>
+        <div class="cat-name">${eixo}</div>
+        <div class="cat-score">${s.acertos}<small>/${s.total}</small></div>
+        <span class="cat-grade ${s.grade.cls}">${s.grade.label}</span>
+      </div>
+    `;
+  }).join('');
+  document.getElementById('categoryCards').innerHTML = cardsHtml;
+
+  // Abas
+  const tabsHtml = `
+    <button class="tab-btn active" data-filter="all">Todas <span class="tab-count">(${questions.length})</span></button>
+    ${eixosOrdem.map(eixo => `
+      <button class="tab-btn" data-filter="${eixo}">
+        ${eixosIcones[eixo]} ${eixo} <span class="tab-count">(${stats[eixo].total})</span>
+      </button>
+    `).join('')}
+  `;
+  document.getElementById('reviewTabs').innerHTML = tabsHtml;
+
+  // Event listeners das abas e dos cards
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => renderReview(btn.dataset.filter));
+  });
+  document.querySelectorAll('.category-card').forEach(card => {
+    card.addEventListener('click', () => {
+      renderReview(card.dataset.filter);
+      document.getElementById('reviewContainer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Render inicial
+  renderReview('all');
+
+  // Observações por categoria
+  const obsHtml = eixosOrdem.map(eixo => {
+    const s = stats[eixo];
+    let comentario;
+    if (s.pct >= 90) comentario = `Excelente desempenho em <strong>${eixo}</strong> — você domina esse conteúdo.`;
+    else if (s.pct >= 70) comentario = `Bom resultado em <strong>${eixo}</strong> — revise os pontos em que você errou para consolidar.`;
+    else if (s.pct >= 50) comentario = `Atenção em <strong>${eixo}</strong> — retome a aula e refaça as questões erradas.`;
+    else comentario = `Prioridade em <strong>${eixo}</strong> — recomendamos revisar o conteúdo teórico antes de refazer o quiz.`;
+
+    return `
+      <div class="obs-group">
+        <div class="obs-title">${eixosIcones[eixo]} ${eixo} — ${s.acertos}/${s.total} (${s.pct}%)</div>
+        <p>${comentario}</p>
+      </div>
+    `;
+  }).join('');
+
+  document.getElementById('observacoesList').innerHTML = obsHtml;
+}
+
+finishBtn.addEventListener('click', () => {
+  questionArea.classList.add('hidden');
+  navButtons.classList.add('hidden');
+  scoreTracker.classList.add('hidden');
+  document.querySelector('.progress-bar').style.display = 'none';
+  document.querySelector('.progress-info').style.display = 'none';
+
+  buildResultsScreen();
 
   resultsContainer.classList.remove('hidden');
   resultsContainer.scrollIntoView({ behavior: 'smooth' });
