@@ -1404,4 +1404,461 @@ function tryAutoplay() {
 window.addEventListener('load', tryAutoplay);
 tryAutoplay();
 
-function firstInteraction
+function firstInteraction() {
+  if (bgMusic.paused) {
+    bgMusic.play().then(() => {
+      autoplayNotice.classList.remove('show');
+      updatePlayUI();
+    }).catch(() => {});
+  }
+  document.removeEventListener('click', firstInteraction);
+  document.removeEventListener('touchstart', firstInteraction);
+  document.removeEventListener('keydown', firstInteraction);
+}
+document.addEventListener('click', firstInteraction);
+document.addEventListener('touchstart', firstInteraction);
+document.addEventListener('keydown', firstInteraction);
+
+musicFab.addEventListener('click', (e) => {
+  e.stopPropagation();
+  musicMenu.classList.toggle('show');
+});
+document.addEventListener('click', (e) => {
+  if (!musicMenu.contains(e.target) && e.target !== musicFab) {
+    musicMenu.classList.remove('show');
+  }
+});
+
+menuPlayPause.addEventListener('click', (e) => {
+  e.stopPropagation();
+  if (bgMusic.paused) {
+    bgMusic.play().then(updatePlayUI).catch(() => {});
+  } else {
+    bgMusic.pause();
+    updatePlayUI();
+  }
+});
+
+menuVolume.addEventListener('input', (e) => {
+  const vol = parseFloat(e.target.value);
+  bgMusic.volume = vol;
+  menuVolLabel.textContent = Math.round(vol * 100) + '%';
+  updateVolIcon(vol);
+});
+function updateVolIcon(vol) {
+  if (vol === 0) menuVolIcon.textContent = '🔇';
+  else if (vol < 0.4) menuVolIcon.textContent = '🔉';
+  else menuVolIcon.textContent = '🔊';
+}
+updateVolIcon(0.5);
+
+menuLyrics.addEventListener('click', (e) => {
+  e.stopPropagation();
+  lyricsOverlay.classList.add('show');
+  document.body.style.overflow = 'hidden';
+  musicMenu.classList.remove('show');
+});
+
+lyricsClose.addEventListener('click', () => {
+  lyricsOverlay.classList.remove('show');
+  document.body.style.overflow = '';
+});
+lyricsOverlay.addEventListener('click', (e) => {
+  if (e.target === lyricsOverlay) {
+    lyricsOverlay.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+});
+
+autoplayNotice.addEventListener('click', () => {
+  bgMusic.play().then(() => {
+    autoplayNotice.classList.remove('show');
+    updatePlayUI();
+  }).catch(() => {});
+});
+
+bgMusic.addEventListener('play', updatePlayUI);
+bgMusic.addEventListener('pause', updatePlayUI);
+
+// ============================================================
+// MODAL DICA GERAL
+// ============================================================
+const dicaGeralModal = document.getElementById('dicaGeralModal');
+document.getElementById('abrirDicaGeral').addEventListener('click', () => {
+  dicaGeralModal.classList.add('show');
+  document.body.style.overflow = 'hidden';
+});
+document.getElementById('fecharDicaGeral').addEventListener('click', () => {
+  dicaGeralModal.classList.remove('show');
+  document.body.style.overflow = '';
+});
+dicaGeralModal.addEventListener('click', (e) => {
+  if (e.target === dicaGeralModal) {
+    dicaGeralModal.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+});
+
+// ============================================================
+// LÓGICA DO QUIZ
+// ============================================================
+const questionArea = document.getElementById('questionArea');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const finishBtn = document.getElementById('finishBtn');
+const progressFill = document.getElementById('progressFill');
+const progressText = document.getElementById('progressText');
+const progressPct = document.getElementById('progressPct');
+const resultsContainer = document.getElementById('resultsContainer');
+const navButtons = document.getElementById('navButtons');
+const scoreTracker = document.getElementById('scoreTracker');
+const trackerAcertos = document.getElementById('trackerAcertos');
+const trackerErros = document.getElementById('trackerErros');
+
+const eixosOrdem = ["Gêneros Textuais", "Fato x Opinião", "Linguagem Formal x Informal"];
+const eixosIcones = {
+  "Gêneros Textuais": "📚",
+  "Fato x Opinião": "⚖️",
+  "Linguagem Formal x Informal": "💬"
+};
+
+let currentIndex = 0;
+let view = 'lesson';
+const answers = {};
+
+function updateScoreTracker() {
+  let acertos = 0, erros = 0;
+  questions.forEach(q => {
+    if (answers[q.id] !== undefined) {
+      if (answers[q.id] === q.correta) acertos++;
+      else erros++;
+    }
+  });
+  trackerAcertos.textContent = acertos;
+  trackerErros.textContent = erros;
+}
+
+function renderLesson() {
+  const eixo = questions[currentIndex].eixo;
+  const lesson = lessons[eixo];
+  const lessonNum = eixosOrdem.indexOf(eixo) + 1;
+  const totalAulas = eixosOrdem.length;
+
+  questionArea.innerHTML = `
+    <div class="lesson-card">
+      <span class="lesson-badge">📖 Aula ${lessonNum} de ${totalAulas}</span>
+      <h2>${lesson.titulo}</h2>
+      ${lesson.conteudo}
+      <img src="https://i.imgur.com/pfaLG9r.png"
+           alt="Ilustração da aula"
+           class="lesson-image">
+      <div class="lesson-nav">
+        <button class="btn btn-secondary" id="lessonPrevBtn" ${currentIndex === 0 ? 'disabled' : ''}>◀ Voltar</button>
+        <button class="btn btn-success" id="lessonStartBtn">Começar questões ▶</button>
+      </div>
+    </div>
+  `;
+
+  navButtons.classList.add('hidden');
+  scoreTracker.classList.add('hidden');
+
+  document.getElementById('lessonPrevBtn').addEventListener('click', () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      view = 'question';
+      renderQuestion();
+    }
+  });
+
+  document.getElementById('lessonStartBtn').addEventListener('click', () => {
+    view = 'question';
+    renderQuestion();
+  });
+
+  const answered = Object.keys(answers).length;
+  const pct = Math.round((answered / questions.length) * 100);
+  progressFill.style.width = pct + '%';
+  progressText.textContent = `📖 Aula ${lessonNum} de ${totalAulas} — ${eixo}`;
+  progressPct.textContent = 'Bloco de aulas';
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderQuestion() {
+  navButtons.classList.remove('hidden');
+  scoreTracker.classList.remove('hidden');
+
+  const q = questions[currentIndex];
+  const nivelClass = q.nivel === 'Fácil' ? 'badge-facil'
+                   : q.nivel === 'Médio' ? 'badge-medio' : 'badge-dificil';
+
+  const respondida = answers[q.id] !== undefined;
+  const userAnswer = answers[q.id];
+  const acertou = respondida && userAnswer === q.correta;
+
+  let optionsHtml = '';
+  q.opcoes.forEach((op, i) => {
+    let cls = '';
+    if (respondida) {
+      if (i === q.correta) cls = 'correct locked';
+      else if (i === userAnswer) cls = 'wrong locked';
+      else cls = 'locked';
+    }
+    optionsHtml += `
+      <div class="option ${cls}" data-opt="${i}">
+        <input type="radio" name="q${q.id}" id="q${q.id}o${i}" value="${i}" ${userAnswer === i ? 'checked' : ''} disabled>
+        <label for="q${q.id}o${i}">${String.fromCharCode(65 + i)}) ${op}</label>
+      </div>
+    `;
+  });
+
+  let feedbackHtml = '';
+  if (respondida) {
+    feedbackHtml = `
+      <div class="feedback-box ${acertou ? 'correct' : 'wrong'}">
+        <div class="feedback-title">
+          ${acertou ? '✅ Você acertou!' : '❌ Você errou.'}
+        </div>
+        <div class="feedback-just">
+          <strong>Justificativa:</strong> ${q.justificativa}
+        </div>
+      </div>
+    `;
+  }
+
+  questionArea.innerHTML = `
+    <div class="question-card" id="q-${q.id}">
+      <div class="question-header">
+        <span class="question-number">Questão ${currentIndex + 1} de ${questions.length}</span>
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+          <span class="badge badge-eixo">${q.eixo}</span>
+          <span class="badge ${nivelClass}">${q.nivel}</span>
+        </div>
+      </div>
+      <p class="question-text">${q.pergunta}</p>
+      <div class="options" id="opts-${q.id}">
+        ${optionsHtml}
+      </div>
+      ${feedbackHtml}
+    </div>
+  `;
+
+  if (!respondida) {
+    questionArea.querySelectorAll('.option').forEach(opt => {
+      opt.addEventListener('click', () => {
+        const optIndex = parseInt(opt.dataset.opt);
+        answers[q.id] = optIndex;
+        updateScoreTracker();
+        renderQuestion();
+      });
+    });
+  }
+
+  updateProgressBar();
+  updateNavButtons();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function updateProgressBar() {
+  const answered = Object.keys(answers).length;
+  const pct = Math.round((answered / questions.length) * 100);
+  progressFill.style.width = pct + '%';
+  progressText.textContent = `Questão ${currentIndex + 1} de ${questions.length}`;
+  progressPct.textContent = `${answered}/${questions.length} respondidas (${pct}%)`;
+}
+
+function updateNavButtons() {
+  const q = questions[currentIndex];
+  const respondida = answers[q.id] !== undefined;
+
+  prevBtn.disabled = currentIndex === 0;
+
+  if (currentIndex === questions.length - 1) {
+    nextBtn.classList.add('hidden');
+    finishBtn.classList.remove('hidden');
+    finishBtn.disabled = !respondida;
+  } else {
+    nextBtn.classList.remove('hidden');
+    finishBtn.classList.add('hidden');
+    nextBtn.disabled = !respondida;
+  }
+}
+
+prevBtn.addEventListener('click', () => {
+  if (currentIndex > 0) {
+    currentIndex--;
+    renderQuestion();
+  }
+});
+
+nextBtn.addEventListener('click', () => {
+  if (currentIndex < questions.length - 1) {
+    const eixoAtual = questions[currentIndex].eixo;
+    const proximoEixo = questions[currentIndex + 1].eixo;
+
+    currentIndex++;
+
+    if (eixoAtual !== proximoEixo) {
+      view = 'lesson';
+      renderLesson();
+    } else {
+      view = 'question';
+      renderQuestion();
+    }
+  }
+});
+
+// ============================================================
+// FUNÇÕES DE AVALIAÇÃO
+// ============================================================
+function getGrade(pct) {
+  if (pct >= 90) return { label: 'Excelente', cls: 'grade-excelente' };
+  if (pct >= 70) return { label: 'Bom', cls: 'grade-bom' };
+  if (pct >= 50) return { label: 'Regular', cls: 'grade-regular' };
+  return { label: 'Precisa melhorar', cls: 'grade-melhorar' };
+}
+
+function calcStats() {
+  const stats = {};
+  eixosOrdem.forEach(eixo => {
+    stats[eixo] = { total: 0, acertos: 0 };
+  });
+  questions.forEach(q => {
+    stats[q.eixo].total++;
+    if (answers[q.id] === q.correta) stats[q.eixo].acertos++;
+  });
+  eixosOrdem.forEach(eixo => {
+    const s = stats[eixo];
+    s.pct = Math.round((s.acertos / s.total) * 100);
+    s.grade = getGrade(s.pct);
+  });
+  return stats;
+}
+
+let currentFilter = 'all';
+let stats = null;
+
+function renderReview(filter) {
+  currentFilter = filter;
+  const container = document.getElementById('reviewContainer');
+
+  const filtered = questions
+    .map((q, idx) => ({ q, idx, userAnswer: answers[q.id], isCorrect: answers[q.id] === q.correta }))
+    .filter(item => filter === 'all' || item.q.eixo === filter);
+
+  container.innerHTML = filtered.map(item => {
+    const { q, idx, userAnswer, isCorrect } = item;
+    const statusClass = isCorrect ? 'correct' : 'wrong';
+    const statusText = isCorrect ? '✅ Acertou' : '❌ Errou';
+    const userLetter = String.fromCharCode(65 + userAnswer);
+    const correctLetter = String.fromCharCode(65 + q.correta);
+
+    return `
+      <div class="review-item">
+        <div class="review-header">
+          <span class="question-number">Questão ${idx + 1} — ${q.eixo} (${q.nivel})</span>
+          <span class="review-status ${statusClass}">${statusText}</span>
+        </div>
+        <p class="review-question">${q.pergunta}</p>
+        <p class="review-answer ${isCorrect ? 'correct' : 'wrong'}">
+          Sua resposta: ${userLetter}) ${q.opcoes[userAnswer]}
+        </p>
+        ${!isCorrect ? `<p class="review-answer correct">Resposta correta: ${correctLetter}) ${q.opcoes[q.correta]}</p>` : ''}
+        <div class="review-justificativa">📌 ${q.justificativa}</div>
+      </div>
+    `;
+  }).join('');
+
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.filter === filter);
+  });
+  document.querySelectorAll('.category-card').forEach(card => {
+    card.classList.toggle('active', card.dataset.filter === filter);
+  });
+}
+
+function buildResultsScreen() {
+  stats = calcStats();
+
+  let totalAcertos = 0;
+  questions.forEach(q => { if (answers[q.id] === q.correta) totalAcertos++; });
+  const pctGeral = Math.round((totalAcertos / questions.length) * 100);
+
+  document.getElementById('scoreBox').textContent = `${totalAcertos}/${questions.length}`;
+  document.getElementById('scoreDetail').innerHTML = `Aproveitamento geral: <strong>${pctGeral}%</strong>`;
+
+  const cardsHtml = eixosOrdem.map(eixo => {
+    const s = stats[eixo];
+    return `
+      <div class="category-card" data-filter="${eixo}">
+        <span class="cat-icon">${eixosIcones[eixo]}</span>
+        <div class="cat-name">${eixo}</div>
+        <div class="cat-score">${s.acertos}<small>/${s.total}</small></div>
+        <span class="cat-grade ${s.grade.cls}">${s.grade.label}</span>
+      </div>
+    `;
+  }).join('');
+  document.getElementById('categoryCards').innerHTML = cardsHtml;
+
+  const tabsHtml = `
+    <button class="tab-btn active" data-filter="all">Todas <span class="tab-count">(${questions.length})</span></button>
+    ${eixosOrdem.map(eixo => `
+      <button class="tab-btn" data-filter="${eixo}">
+        ${eixosIcones[eixo]} ${eixo} <span class="tab-count">(${stats[eixo].total})</span>
+      </button>
+    `).join('')}
+  `;
+  document.getElementById('reviewTabs').innerHTML = tabsHtml;
+
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => renderReview(btn.dataset.filter));
+  });
+  document.querySelectorAll('.category-card').forEach(card => {
+    card.addEventListener('click', () => {
+      renderReview(card.dataset.filter);
+      document.getElementById('reviewContainer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  renderReview('all');
+
+  const obsHtml = eixosOrdem.map(eixo => {
+    const s = stats[eixo];
+    let comentario;
+    if (s.pct >= 90) comentario = `Excelente desempenho em <strong>${eixo}</strong> — você domina esse conteúdo.`;
+    else if (s.pct >= 70) comentario = `Bom resultado em <strong>${eixo}</strong> — revise os pontos em que você errou para consolidar.`;
+    else if (s.pct >= 50) comentario = `Atenção em <strong>${eixo}</strong> — retome a aula e refaça as questões erradas.`;
+    else comentario = `Prioridade em <strong>${eixo}</strong> — recomendamos revisar o conteúdo teórico antes de refazer o quiz.`;
+
+    return `
+      <div class="obs-group">
+        <div class="obs-title">${eixosIcones[eixo]} ${eixo} — ${s.acertos}/${s.total} (${s.pct}%)</div>
+        <p>${comentario}</p>
+      </div>
+    `;
+  }).join('');
+
+  document.getElementById('observacoesList').innerHTML = obsHtml;
+}
+
+finishBtn.addEventListener('click', () => {
+  questionArea.classList.add('hidden');
+  navButtons.classList.add('hidden');
+  scoreTracker.classList.add('hidden');
+  document.querySelector('.progress-bar').style.display = 'none';
+  document.querySelector('.progress-info').style.display = 'none';
+
+  buildResultsScreen();
+
+  resultsContainer.classList.remove('hidden');
+  resultsContainer.scrollIntoView({ behavior: 'smooth' });
+});
+
+// ============================================================
+// INICIALIZA
+// ============================================================
+renderLesson();
+updatePlayUI();
+</script>
+</body>
+</html>
