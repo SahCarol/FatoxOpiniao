@@ -350,7 +350,7 @@
       border: 1px solid var(--border);
       border-top: 5px solid var(--accent);
       animation: cardIn 0.35s ease;
-      min-height: 420px; /* garante espaço para a boneca */
+      min-height: 420px;
     }
 
     /* 🖼️ Boneca decorativa no canto inferior direito — PNG transparente */
@@ -368,7 +368,7 @@
       box-shadow: none;
       transition: transform 0.25s ease;
       z-index: 2;
-      pointer-events: none; /* não bloqueia cliques nem seleção */
+      pointer-events: none;
     }
     .lesson-image:hover {
       transform: scale(1.05);
@@ -439,7 +439,7 @@
       background: #fef9e7;
       border-left: 4px solid var(--warning);
       padding: 12px 16px;
-      padding-right: 230px; /* deixa espaço para a boneca */
+      padding-right: 230px;
       border-radius: 6px;
       margin: 14px 0;
       font-size: 0.92rem;
@@ -455,7 +455,7 @@
       display: flex; justify-content: space-between;
       gap: 12px; margin-top: 26px; flex-wrap: wrap;
       padding-top: 20px;
-      padding-right: 220px; /* deixa espaço para a boneca no canto */
+      padding-right: 220px;
       border-top: 2px dashed var(--border);
     }
     .btn {
@@ -540,7 +540,6 @@
       .nav-buttons, .lesson-nav { flex-direction: column; }
       .modal-content { padding: 22px 18px; }
 
-      /* No mobile a boneca fica centralizada, entre o conteúdo e os botões */
       .lesson-image {
         position: static;
         display: block;
@@ -1206,7 +1205,7 @@ function renderLesson() {
       <span class="lesson-badge">📖 Aula ${lessonNum} de ${totalAulas}</span>
       <h2>${lesson.titulo}</h2>
       ${lesson.conteudo}
-      <img src="https://i.imgur.com/Z0YRxE1.png"
+      <img src="https://i.imgur.com/pfaLG9r.png"
            alt="Ilustração da aula"
            class="lesson-image">
       <div class="lesson-nav">
