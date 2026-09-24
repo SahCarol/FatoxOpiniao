@@ -25,151 +25,70 @@
       color: var(--text);
       line-height: 1.6;
       padding: 20px;
-      padding-top: 90px; /* espaço para o player fixo */
+      padding-top: 90px;
     }
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    header h1 {
-      color: var(--primary);
-      font-size: 1.8rem;
-      margin-bottom: 8px;
-    }
-    header p {
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
+    .container { max-width: 800px; margin: 0 auto; }
 
     /* ================= PLAYER DE MÚSICA ================= */
     .music-player {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-      color: #fff;
-      padding: 10px 18px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
+      color: #fff; padding: 10px 18px;
+      display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
       box-shadow: 0 2px 12px rgba(0,0,0,0.2);
     }
     .music-player .track-info {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      min-width: 140px;
+      display: flex; align-items: center; gap: 8px;
+      font-weight: 600; font-size: 0.9rem; min-width: 140px;
     }
     .music-player .track-info .note {
-      font-size: 1.2rem;
-      animation: pulse 1.8s infinite;
+      font-size: 1.2rem; animation: pulse 1.8s infinite;
     }
     @keyframes pulse {
       0%, 100% { transform: scale(1); opacity: 1; }
       50% { transform: scale(1.15); opacity: 0.75; }
     }
-    .music-player .track-info.paused .note {
-      animation: none;
-      opacity: 0.5;
-    }
+    .music-player .track-info.paused .note { animation: none; opacity: 0.5; }
     .music-controls {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex: 1;
-      min-width: 220px;
+      display: flex; align-items: center; gap: 10px; flex: 1; min-width: 220px;
     }
     .music-btn {
       background: rgba(255,255,255,0.15);
       border: 1.5px solid rgba(255,255,255,0.3);
-      color: #fff;
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s;
-      flex-shrink: 0;
+      color: #fff; width: 38px; height: 38px; border-radius: 50%;
+      cursor: pointer; font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s; flex-shrink: 0;
     }
-    .music-btn:hover {
-      background: rgba(255,255,255,0.3);
-      transform: scale(1.08);
-    }
+    .music-btn:hover { background: rgba(255,255,255,0.3); transform: scale(1.08); }
     .music-btn:active { transform: scale(0.95); }
     .volume-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex: 1;
-      min-width: 130px;
+      display: flex; align-items: center; gap: 8px; flex: 1; min-width: 130px;
     }
-    .volume-wrapper .vol-icon {
-      font-size: 0.95rem;
-      opacity: 0.85;
-    }
+    .volume-wrapper .vol-icon { font-size: 0.95rem; opacity: 0.85; }
     .volume-slider {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 100%;
-      height: 5px;
-      border-radius: 5px;
-      background: rgba(255,255,255,0.25);
-      outline: none;
-      cursor: pointer;
+      -webkit-appearance: none; appearance: none;
+      width: 100%; height: 5px; border-radius: 5px;
+      background: rgba(255,255,255,0.25); outline: none; cursor: pointer;
     }
     .volume-slider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 15px;
-      height: 15px;
-      border-radius: 50%;
-      background: #fff;
-      cursor: pointer;
+      -webkit-appearance: none; appearance: none;
+      width: 15px; height: 15px; border-radius: 50%;
+      background: #fff; cursor: pointer;
       box-shadow: 0 0 4px rgba(0,0,0,0.4);
     }
     .volume-slider::-moz-range-thumb {
-      width: 15px;
-      height: 15px;
-      border-radius: 50%;
-      background: #fff;
-      cursor: pointer;
-      border: none;
+      width: 15px; height: 15px; border-radius: 50%;
+      background: #fff; cursor: pointer; border: none;
       box-shadow: 0 0 4px rgba(0,0,0,0.4);
     }
-    .volume-label {
-      font-size: 0.78rem;
-      min-width: 34px;
-      text-align: right;
-      opacity: 0.85;
-    }
+    .volume-label { font-size: 0.78rem; min-width: 34px; text-align: right; opacity: 0.85; }
     .autoplay-notice {
-      position: fixed;
-      top: 68px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #f39c12;
-      color: #fff;
-      padding: 10px 22px;
-      border-radius: 30px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-      z-index: 999;
-      cursor: pointer;
-      display: none;
-      animation: slideDown 0.4s ease;
+      position: fixed; top: 68px; left: 50%; transform: translateX(-50%);
+      background: #f39c12; color: #fff; padding: 10px 22px;
+      border-radius: 30px; font-size: 0.85rem; font-weight: 600;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2); z-index: 999;
+      cursor: pointer; display: none; animation: slideDown 0.4s ease;
     }
     .autoplay-notice.show { display: block; }
     @keyframes slideDown {
@@ -183,247 +102,305 @@
       .autoplay-notice { top: 118px; font-size: 0.78rem; padding: 8px 16px; }
     }
 
-    /* ================= ESTILOS DO QUIZ (mantidos) ================= */
+    /* ================= CABEÇALHO ================= */
+    header { text-align: center; margin-bottom: 20px; }
+    header h1 { color: var(--primary); font-size: 1.7rem; margin-bottom: 8px; }
+    header p { color: var(--muted); font-size: 0.95rem; }
+
+    /* ================= BOTÃO DICA GERAL ================= */
+    .top-actions {
+      display: flex; justify-content: center; gap: 12px; margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .btn-dica-geral {
+      background: linear-gradient(135deg, #f39c12, #e67e22);
+      color: #fff; border: none; padding: 12px 26px;
+      border-radius: 30px; font-size: 0.95rem; font-weight: 700;
+      cursor: pointer; box-shadow: 0 3px 10px rgba(243,156,18,0.35);
+      transition: all 0.2s;
+    }
+    .btn-dica-geral:hover { transform: translateY(-2px); box-shadow: 0 5px 14px rgba(243,156,18,0.5); }
+
+    /* ================= MODAL DICA GERAL ================= */
+    .modal-overlay {
+      display: none;
+      position: fixed; inset: 0; background: rgba(0,0,0,0.55);
+      z-index: 2000; padding: 20px;
+      justify-content: center; align-items: flex-start;
+      overflow-y: auto;
+    }
+    .modal-overlay.show { display: flex; }
+    .modal-content {
+      background: #fff; max-width: 780px; width: 100%;
+      border-radius: 14px; padding: 28px 30px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+      margin: 20px auto; animation: fadeIn 0.3s ease;
+      max-height: calc(100vh - 60px); overflow-y: auto;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .modal-content h2 {
+      color: var(--primary); text-align: center;
+      margin-bottom: 18px; font-size: 1.4rem;
+    }
+    .modal-content h3 {
+      color: #b9770e; margin-top: 20px; margin-bottom: 8px;
+      font-size: 1.05rem;
+      border-left: 4px solid var(--warning);
+      padding-left: 10px;
+    }
+    .modal-content p, .modal-content li {
+      font-size: 0.92rem; color: #444; margin-bottom: 6px;
+    }
+    .modal-content ul { padding-left: 22px; margin-bottom: 8px; }
+    .modal-content .destaque {
+      background: #fef9e7; padding: 10px 14px;
+      border-radius: 8px; border-left: 3px solid var(--warning);
+      font-size: 0.9rem; color: #7d6608; margin: 10px 0;
+    }
+    .modal-close {
+      display: block; margin: 22px auto 0;
+      background: var(--primary); color: #fff;
+      border: none; padding: 12px 34px; border-radius: 8px;
+      font-size: 0.95rem; font-weight: 700; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .modal-close:hover { background: #1a252f; }
+
+    /* ================= PROGRESSO ================= */
     .progress-bar {
-      background: #e0e0e0;
-      border-radius: 20px;
-      height: 8px;
-      margin: 16px 0 4px;
-      overflow: hidden;
+      background: #e0e0e0; border-radius: 20px; height: 10px;
+      margin-bottom: 6px; overflow: hidden;
     }
     .progress-fill {
-      background: var(--accent);
-      height: 100%;
-      width: 0%;
-      transition: width 0.3s ease;
+      background: linear-gradient(90deg, #3498db, #2ecc71);
+      height: 100%; width: 0%; transition: width 0.3s ease;
     }
-    .progress-text {
-      text-align: right;
-      font-size: 0.85rem;
-      color: var(--muted);
+    .progress-info {
+      display: flex; justify-content: space-between;
+      font-size: 0.85rem; color: var(--muted); margin-bottom: 20px;
     }
+    .progress-info .pct { font-weight: 700; color: var(--accent); }
+
+    /* ================= CARD DA QUESTÃO ================= */
     .question-card {
-      background: var(--card);
-      border-radius: 12px;
-      padding: 24px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      background: var(--card); border-radius: 12px;
+      padding: 26px; margin-bottom: 20px;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.07);
       border: 1px solid var(--border);
+      animation: cardIn 0.35s ease;
+    }
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     .question-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 14px;
-      flex-wrap: wrap;
-      gap: 8px;
+      display: flex; justify-content: space-between;
+      align-items: center; margin-bottom: 14px;
+      flex-wrap: wrap; gap: 8px;
     }
     .question-number {
-      font-weight: 700;
-      color: var(--accent);
-      font-size: 0.9rem;
+      font-weight: 700; color: var(--accent); font-size: 0.9rem;
     }
     .badge {
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 3px 10px;
-      border-radius: 20px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      font-size: 0.72rem; font-weight: 700; padding: 3px 10px;
+      border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px;
     }
     .badge-facil { background: #d5f5e3; color: #1e8449; }
     .badge-medio { background: #fdebd0; color: #b9770e; }
     .badge-dificil { background: #fadbd8; color: #b03a2e; }
     .badge-eixo { background: #eaf2f8; color: #2471a3; font-weight: 600; }
     .question-text {
-      font-size: 1rem;
-      margin-bottom: 16px;
-      color: #2c3e50;
+      font-size: 1.05rem; margin-bottom: 18px;
+      color: #2c3e50; font-weight: 500;
     }
-    .options {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+    .options { display: flex; flex-direction: column; gap: 10px; }
     .option {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      padding: 12px 14px;
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.2s;
-      background: #fafafa;
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 13px 15px; border: 1.5px solid var(--border);
+      border-radius: 8px; cursor: pointer;
+      transition: all 0.2s; background: #fafafa;
     }
-    .option:hover {
-      border-color: var(--accent);
-      background: #f0f7ff;
-    }
-    .option.selected {
-      border-color: var(--accent);
-      background: #eaf4fd;
-    }
-    .option.correct {
-      border-color: var(--success);
-      background: #eafaf1;
-    }
-    .option.wrong {
-      border-color: var(--danger);
-      background: #fdedec;
-    }
-    .option input {
-      margin-top: 4px;
-      accent-color: var(--accent);
-    }
-    .option label {
-      cursor: pointer;
-      flex: 1;
-      font-size: 0.95rem;
-    }
-    .dica-btn {
-      background: none;
-      border: 1.5px dashed var(--warning);
-      color: var(--warning);
-      font-size: 0.82rem;
-      font-weight: 600;
-      padding: 6px 14px;
-      border-radius: 20px;
-      cursor: pointer;
-      margin-top: 12px;
-      transition: all 0.2s;
-    }
-    .dica-btn:hover {
-      background: #fef9e7;
-    }
-    .dica-box {
-      display: none;
-      margin-top: 10px;
-      padding: 12px 16px;
-      background: #fef9e7;
-      border-left: 4px solid var(--warning);
-      border-radius: 6px;
-      font-size: 0.88rem;
-      color: #7d6608;
-    }
-    .dica-box.show { display: block; }
-    .actions {
-      text-align: center;
-      margin: 30px 0;
-    }
-    .btn {
-      display: inline-block;
-      padding: 14px 36px;
-      font-size: 1rem;
-      font-weight: 700;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-    }
-    .btn-primary:hover { background: var(--accent-hover); }
-    .btn-primary:disabled {
-      background: #bdc3c7;
-      cursor: not-allowed;
-    }
-    .btn-secondary {
-      background: var(--primary);
-      color: #fff;
-    }
-    .btn-secondary:hover { background: #1a252f; }
-    .results {
-      background: var(--card);
+    .option:hover { border-color: var(--accent); background: #f0f7ff; }
+    .option.selected { border-color: var(--accent); background: #eaf4fd; }
+    .option input { margin-top: 4px; accent-color: var(--accent); }
+    .option label { cursor: pointer; flex: 1; font-size: 0.95rem; }
+
+    /* ================= CARD DA AULA ================= */
+    .lesson-card {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fbfe 100%);
       border-radius: 12px;
       padding: 28px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      margin-bottom: 20px;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.07);
+      border: 1px solid var(--border);
+      border-top: 5px solid var(--accent);
+      animation: cardIn 0.35s ease;
+    }
+    .lesson-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #3498db, #2980b9);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      box-shadow: 0 2px 6px rgba(52,152,219,0.3);
+    }
+    .lesson-card h2 {
+      color: var(--primary);
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+    .lesson-card h4 {
+      color: #2471a3;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      font-size: 1rem;
+      border-left: 3px solid var(--accent);
+      padding-left: 8px;
+    }
+    .lesson-card p {
+      margin-bottom: 10px;
+      color: #444;
+      font-size: 0.95rem;
+    }
+    .lesson-card ul {
+      padding-left: 22px;
+      margin-bottom: 12px;
+    }
+    .lesson-card li {
+      margin-bottom: 6px;
+      font-size: 0.93rem;
+      color: #444;
+    }
+    .lesson-card strong { color: #2c3e50; }
+    .lesson-box {
+      background: #eaf2f8;
+      border-left: 4px solid var(--accent);
+      padding: 12px 16px;
+      border-radius: 6px;
+      margin: 14px 0;
+      font-size: 0.92rem;
+      color: #1c4b6b;
+    }
+    .lesson-example {
+      background: #f8f9fa;
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin: 8px 0;
+      font-size: 0.9rem;
+      border-left: 3px solid #95a5a6;
+      font-style: italic;
+      color: #555;
+    }
+    .lesson-warn {
+      background: #fef9e7;
+      border-left: 4px solid var(--warning);
+      padding: 12px 16px;
+      border-radius: 6px;
+      margin: 14px 0;
+      font-size: 0.92rem;
+      color: #7d6608;
+    }
+
+    /* ================= NAVEGAÇÃO ================= */
+    .nav-buttons {
+      display: flex; justify-content: space-between;
+      gap: 12px; margin-top: 20px; flex-wrap: wrap;
+    }
+    .lesson-nav {
+      display: flex; justify-content: space-between;
+      gap: 12px; margin-top: 26px; flex-wrap: wrap;
+      padding-top: 20px;
+      border-top: 2px dashed var(--border);
+    }
+    .btn {
+      display: inline-block; padding: 13px 32px;
+      font-size: 0.95rem; font-weight: 700;
+      border: none; border-radius: 8px;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-primary:disabled {
+      background: #bdc3c7; cursor: not-allowed; opacity: 0.7;
+    }
+    .btn-secondary { background: #95a5a6; color: #fff; }
+    .btn-secondary:hover { background: #7f8c8d; }
+    .btn-secondary:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-success {
+      background: linear-gradient(135deg, #27ae60, #229954);
+      color: #fff;
+    }
+    .btn-success:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(39,174,96,0.4); }
+    .btn-success:disabled {
+      background: #bdc3c7; cursor: not-allowed;
+      transform: none; box-shadow: none;
+    }
+
+    /* ================= RESULTADOS ================= */
+    .results {
+      background: var(--card); border-radius: 12px;
+      padding: 28px; box-shadow: 0 3px 14px rgba(0,0,0,0.08);
       border: 1px solid var(--border);
     }
     .results h2 {
-      color: var(--primary);
-      margin-bottom: 16px;
-      text-align: center;
+      color: var(--primary); margin-bottom: 16px; text-align: center;
     }
     .score-box {
-      text-align: center;
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: var(--accent);
-      margin: 16px 0;
+      text-align: center; font-size: 2.4rem; font-weight: 800;
+      color: var(--accent); margin: 16px 0;
     }
     .score-detail {
-      text-align: center;
-      color: var(--muted);
-      margin-bottom: 24px;
+      text-align: center; color: var(--muted); margin-bottom: 24px;
     }
-    .review-item {
-      border-top: 1px solid var(--border);
-      padding: 18px 0;
-    }
+    .review-item { border-top: 1px solid var(--border); padding: 18px 0; }
     .review-item:first-of-type { border-top: none; }
     .review-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-      flex-wrap: wrap;
-      gap: 6px;
+      display: flex; justify-content: space-between;
+      align-items: center; margin-bottom: 8px;
+      flex-wrap: wrap; gap: 6px;
     }
     .review-status {
-      font-weight: 700;
-      font-size: 0.85rem;
-      padding: 3px 10px;
-      border-radius: 12px;
+      font-weight: 700; font-size: 0.85rem;
+      padding: 3px 10px; border-radius: 12px;
     }
     .review-status.correct { background: #d5f5e3; color: #1e8449; }
     .review-status.wrong { background: #fadbd8; color: #b03a2e; }
-    .review-question {
-      font-weight: 600;
-      margin-bottom: 6px;
-      color: #2c3e50;
-    }
-    .review-answer {
-      font-size: 0.9rem;
-      margin-bottom: 4px;
-    }
+    .review-question { font-weight: 600; margin-bottom: 6px; color: #2c3e50; }
+    .review-answer { font-size: 0.9rem; margin-bottom: 4px; }
     .review-answer.correct { color: var(--success); }
     .review-answer.wrong { color: var(--danger); }
     .review-justificativa {
-      font-size: 0.88rem;
-      color: #555;
-      background: #f8f9fa;
-      padding: 10px 14px;
-      border-radius: 6px;
-      margin-top: 8px;
+      font-size: 0.88rem; color: #555;
+      background: #f8f9fa; padding: 10px 14px;
+      border-radius: 6px; margin-top: 8px;
       border-left: 3px solid var(--accent);
     }
     .observacoes {
-      background: #fff8e1;
-      border-radius: 12px;
-      padding: 24px;
-      margin-top: 30px;
+      background: #fff8e1; border-radius: 12px;
+      padding: 24px; margin-top: 30px;
       border: 1px solid #f9e79f;
     }
-    .observacoes h3 {
-      color: #b9770e;
-      margin-bottom: 12px;
-    }
-    .observacoes ul {
-      padding-left: 20px;
-    }
-    .observacoes li {
-      margin-bottom: 8px;
-      font-size: 0.92rem;
-      color: #5d4e0e;
-    }
+    .observacoes h3 { color: #b9770e; margin-bottom: 12px; }
+    .observacoes ul { padding-left: 20px; }
+    .observacoes li { margin-bottom: 8px; font-size: 0.92rem; color: #5d4e0e; }
     .hidden { display: none; }
+
     @media (max-width: 600px) {
-      header h1 { font-size: 1.4rem; }
-      .question-card { padding: 18px; }
+      header h1 { font-size: 1.35rem; }
+      .question-card, .lesson-card { padding: 18px; }
       .btn { width: 100%; }
+      .nav-buttons, .lesson-nav { flex-direction: column; }
+      .modal-content { padding: 22px 18px; }
+      .lesson-card h2 { font-size: 1.2rem; }
     }
   </style>
 </head>
@@ -433,10 +410,10 @@
 <div class="music-player">
   <div class="track-info paused" id="trackInfo">
     <span class="note">🎵</span>
-    <span>Ftop</span>
+    <span>Fato x Opinião</span>
   </div>
   <div class="music-controls">
-    <button class="music-btn" id="playPauseBtn" title="Play/Pause" aria-label="Play ou Pause">▶</button>
+    <button class="music-btn" id="playPauseBtn" title="Play/Pause">▶</button>
     <div class="volume-wrapper">
       <span class="vol-icon" id="volIcon">🔊</span>
       <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.01" value="0.5">
@@ -445,16 +422,43 @@
   </div>
 </div>
 
-<!-- Aviso caso o autoplay seja bloqueado -->
 <div class="autoplay-notice" id="autoplayNotice">
   🔇 Clique em qualquer lugar para tocar a música
 </div>
 
-<!-- Elemento de áudio (coloque o arquivo Ftop.mp3 na mesma pasta) -->
 <audio id="bgMusic" loop preload="auto">
   <source src="Ftop.mp3" type="audio/mpeg">
   Seu navegador não suporta o elemento de áudio.
 </audio>
+
+<!-- ================= MODAL: DICA GERAL ================= -->
+<div class="modal-overlay" id="dicaGeralModal">
+  <div class="modal-content">
+    <h2>💡 Dica Geral — Resumo do Conteúdo</h2>
+
+    <h3>📚 1. Gêneros Textuais — foco em Artigo de Opinião</h3>
+    <p>Todo texto tem uma <strong>função social</strong>. Chamamos de <em>gênero textual</em> os diferentes tipos de texto que circulam na sociedade: notícia, receita, crônica, artigo de opinião, editorial, etc.</p>
+    <p><strong>Artigo de opinião</strong> é um gênero <em>argumentativo</em> em que o autor defende uma tese, é assinado e circula em jornais, revistas e blogs.</p>
+    <p><strong>Diferença do editorial:</strong> o editorial expressa a opinião do <em>veículo</em> e não é assinado; o artigo de opinião é assinado e expressa a opinião do <em>autor</em>.</p>
+    <p><strong>Diferença da notícia:</strong> a notícia é <em>objetiva e informativa</em>; o artigo de opinião é <em>subjetivo e argumentativo</em>.</p>
+
+    <h3>⚖️ 2. Fato x Opinião</h3>
+    <p><strong>FATO</strong> é um acontecimento <em>verificável</em> — comprovável por fontes confiáveis.</p>
+    <p><strong>OPINIÃO</strong> é um <em>ponto de vista</em> — expressa julgamento, avaliação, crença ou interpretação.</p>
+    <div class="destaque">
+      🔑 <strong>Pergunte-se:</strong> essa frase pode ser comprovada por um documento/estatística/ciência? Se <em>sim</em> → fato. Se depende de interpretação → opinião.
+    </div>
+
+    <h3>💬 3. Linguagem Formal x Informal</h3>
+    <p><strong>Formal</strong>: respeita a norma culta, vocabulário elaborado, sem gírias nem reduções.</p>
+    <p><strong>Informal</strong>: livre, espontânea, com gírias, reduções e expressões coloquiais.</p>
+    <div class="destaque">
+      ⚠️ Nenhuma é "certa" ou "errada". O que existe é <strong>adequação ao contexto</strong>.
+    </div>
+
+    <button class="modal-close" id="fecharDicaGeral">Entendi! Fechar</button>
+  </div>
+</div>
 
 <div class="container">
   <header>
@@ -462,15 +466,24 @@
     <p>50 questões de nível Ensino Médio • Artigo de opinião em foco</p>
   </header>
 
+  <div class="top-actions">
+    <button class="btn-dica-geral" id="abrirDicaGeral">💡 Dica Geral (revisar conteúdo)</button>
+  </div>
+
   <div class="progress-bar">
     <div class="progress-fill" id="progressFill"></div>
   </div>
-  <div class="progress-text" id="progressText">0 de 50 respondidas</div>
+  <div class="progress-info">
+    <span id="progressText">Aula 1 de 3 — Gêneros Textuais</span>
+    <span class="pct" id="progressPct">📖 Aula</span>
+  </div>
 
-  <div id="quizContainer"></div>
+  <div id="questionArea"></div>
 
-  <div class="actions" id="actions">
-    <button class="btn btn-primary" id="submitBtn" disabled>Finalizar Quiz</button>
+  <div class="nav-buttons" id="navButtons">
+    <button class="btn btn-secondary" id="prevBtn" disabled>◀ Anterior</button>
+    <button class="btn btn-primary" id="nextBtn">Próxima ▶</button>
+    <button class="btn btn-success hidden" id="finishBtn">✓ Finalizar Quiz</button>
   </div>
 
   <div id="resultsContainer" class="hidden">
@@ -492,310 +505,386 @@
 
 <script>
 // ============================================================
-// BANCO DE 50 QUESTÕES (mantido igual ao original)
+// BANCO DE 50 QUESTÕES
 // ============================================================
 const questions = [
   { id: 1, eixo: "Gêneros Textuais", nivel: "Fácil",
     pergunta: "Qual é a principal finalidade de um artigo de opinião?",
     opcoes: ["Informar objetivamente sobre um acontecimento, sem posicionamento.","Apresentar uma posição e argumentar para convencer o leitor.","Narrar uma história fictícia com personagens e enredo.","Instruir o leitor sobre como realizar uma tarefa passo a passo."],
     correta: 1,
-    justificativa: "O artigo de opinião é um texto argumentativo cujo objetivo é apresentar uma posição e argumentar, mostrando aos leitores por que devem concordar com o autor.",
-    dica: "Pense no verbo 'argumentar': o artigo de opinião quer convencer alguém de algo." },
+    justificativa: "O artigo de opinião é um texto argumentativo cujo objetivo é apresentar uma posição e argumentar, mostrando aos leitores por que devem concordar com o autor." },
   { id: 2, eixo: "Gêneros Textuais", nivel: "Fácil",
     pergunta: "Uma das características centrais do artigo de opinião é:",
     opcoes: ["Ser sempre escrito em terceira pessoa, sem marcas de subjetividade.","Ser assinado pelo autor e veicular uma opinião pessoal.","Não circular em jornais e revistas, apenas em blogs.","Ter estrutura rígida e obrigatória de cinco parágrafos."],
     correta: 1,
-    justificativa: "O artigo de opinião é assinado e traz uma opinião pessoal no meio de um debate público.",
-    dica: "Lembre-se: artigo de opinião tem 'dono', ou seja, é assinado." },
+    justificativa: "O artigo de opinião é assinado e traz uma opinião pessoal no meio de um debate público." },
   { id: 3, eixo: "Gêneros Textuais", nivel: "Médio",
     pergunta: "Leia o trecho: “Sou contra porque a possibilidade de sobrevivência e transformação desses adolescentes está na correta aplicação do Estatuto da Criança e do Adolescente.” Esse trecho pertence a qual gênero textual?",
     opcoes: ["Notícia","Reportagem","Artigo de opinião","Editorial"],
     correta: 2,
-    justificativa: "O trecho expressa posicionamento pessoal (“Sou contra”) e apresenta argumento, característica típica do artigo de opinião.",
-    dica: "Observe a marca de primeira pessoa e a defesa de um ponto de vista." },
+    justificativa: "O trecho expressa posicionamento pessoal (“Sou contra”) e apresenta argumento, característica típica do artigo de opinião." },
   { id: 4, eixo: "Gêneros Textuais", nivel: "Médio",
     pergunta: "Qual das alternativas abaixo NÃO é uma característica do artigo de opinião?",
     opcoes: ["Uso da argumentação e persuasão.","Temas da atualidade e de relevância social.","Linguagem simples, objetiva e subjetiva.","Obrigatoriedade de apresentar apenas dados estatísticos."],
     correta: 3,
-    justificativa: "O artigo de opinião pode usar dados, mas não é obrigatório que apresente apenas estatísticas; ele se baseia em argumentos variados.",
-    dica: "Artigo de opinião é flexível: pode ter dados, exemplos, comparações, etc." },
+    justificativa: "O artigo de opinião pode usar dados, mas não é obrigatório que apresente apenas estatísticas; ele se baseia em argumentos variados." },
   { id: 5, eixo: "Gêneros Textuais", nivel: "Difícil",
     pergunta: "Analise: “Vivemos em um sistema socioeconômico historicamente desigual e violento, que só pode gerar mais violência.” Nesse enunciado, o autor:",
     opcoes: ["Apresenta um fato comprovável por documentos oficiais.","Emite uma opinião com base em uma interpretação da realidade.","Descreve um acontecimento cotidiano sem juízo de valor.","Relata uma experiência pessoal de forma subjetiva."],
     correta: 1,
-    justificativa: "Trata-se de uma interpretação da realidade (opinião), pois não é uma afirmação verificável por dados objetivos, mas uma avaliação do autor.",
-    dica: "Pergunte-se: isso pode ser comprovado por um documento? Se não, é opinião." },
+    justificativa: "Trata-se de uma interpretação da realidade (opinião), pois não é uma afirmação verificável por dados objetivos, mas uma avaliação do autor." },
   { id: 6, eixo: "Gêneros Textuais", nivel: "Fácil",
     pergunta: "Onde os artigos de opinião costumam circular?",
     opcoes: ["Apenas em livros didáticos.","Em jornais, revistas e blogs.","Somente em redes sociais fechadas.","Exclusivamente em documentos oficiais."],
     correta: 1,
-    justificativa: "O artigo de opinião circula em jornais e revistas e é escrito por especialistas ou pessoas da comunidade.",
-    dica: "Pense nos veículos de comunicação que você conhece." },
+    justificativa: "O artigo de opinião circula em jornais e revistas e é escrito por especialistas ou pessoas da comunidade." },
   { id: 7, eixo: "Gêneros Textuais", nivel: "Médio",
     pergunta: "Qual é a diferença entre artigo de opinião e notícia?",
     opcoes: ["A notícia é opinativa; o artigo de opinião é imparcial.","O artigo de opinião defende um ponto de vista; a notícia busca informar de forma objetiva.","Ambos têm a mesma função: convencer o leitor.","A notícia é assinada; o artigo de opinião nunca é assinado."],
     correta: 1,
-    justificativa: "A notícia tem compromisso com a objetividade e a informação; o artigo de opinião expressa e defende um ponto de vista.",
-    dica: "Notícia = informar. Artigo de opinião = convencer." },
+    justificativa: "A notícia tem compromisso com a objetividade e a informação; o artigo de opinião expressa e defende um ponto de vista." },
   { id: 8, eixo: "Gêneros Textuais", nivel: "Difícil",
     pergunta: "“Algumas pessoas defendem a ideia de que a partir dos dezesseis anos os jovens que cometem crimes devem cumprir pena em prisão.” Esse trecho, em um artigo de opinião, serve para:",
     opcoes: ["Apresentar a tese do autor.","Introduzir a opinião contrária para depois refutá-la.","Concluir o texto com uma solução.","Narrar um fato ocorrido com o autor."],
     correta: 1,
-    justificativa: "O autor apresenta a posição contrária (“algumas pessoas defendem...”) para, em seguida, argumentar contra ela, defendendo sua própria tese.",
-    dica: "Estratégia argumentativa comum: mostrar o lado oposto antes de refutar." },
+    justificativa: "O autor apresenta a posição contrária (“algumas pessoas defendem...”) para, em seguida, argumentar contra ela, defendendo sua própria tese." },
   { id: 9, eixo: "Gêneros Textuais", nivel: "Fácil",
     pergunta: "Um texto que apresenta título polêmico, linguagem subjetiva e defesa de um ponto de vista é provavelmente:",
     opcoes: ["Uma receita culinária.","Um artigo de opinião.","Um manual de instruções.","Uma notícia policial."],
     correta: 1,
-    justificativa: "Título polêmico, subjetividade e defesa de ponto de vista são características do artigo de opinião.",
-    dica: "Título chamativo + opinião = artigo de opinião." },
+    justificativa: "Título polêmico, subjetividade e defesa de ponto de vista são características do artigo de opinião." },
   { id: 10, eixo: "Gêneros Textuais", nivel: "Médio",
     pergunta: "“A brutalidade cometida contra dois jovens em São Paulo reacendeu uma fogueira: a redução da idade penal.” Nesse trecho, a palavra “fogueira” foi usada:",
     opcoes: ["Em sentido literal, indicando um incêndio real.","Em sentido figurado, para enfatizar a polêmica do tema.","Como um dado estatístico.","Para narrar um acontecimento histórico."],
     correta: 1,
-    justificativa: "“Fogueira” é usada metaforicamente para indicar que o tema é polêmico e acalorado, recurso comum em artigos de opinião.",
-    dica: "Pense no efeito de sentido: fogueira queima, esquenta... o tema está 'quente'." },
+    justificativa: "“Fogueira” é usada metaforicamente para indicar que o tema é polêmico e acalorado, recurso comum em artigos de opinião." },
   { id: 11, eixo: "Gêneros Textuais", nivel: "Difícil",
     pergunta: "Qual das opções abaixo melhor descreve a estrutura típica de um artigo de opinião?",
     opcoes: ["Introdução, desenvolvimento e conclusão, com defesa de tese.","Personagens, tempo, espaço, conflito e desfecho.","Lista de ingredientes e modo de preparo.","Perguntas e respostas frequentes."],
     correta: 0,
-    justificativa: "O artigo de opinião, embora não tenha estrutura rígida, costuma organizar-se em introdução (tese), desenvolvimento (argumentos) e conclusão.",
-    dica: "É um texto argumentativo: tese, argumentos e fechamento." },
+    justificativa: "O artigo de opinião, embora não tenha estrutura rígida, costuma organizar-se em introdução (tese), desenvolvimento (argumentos) e conclusão." },
   { id: 12, eixo: "Gêneros Textuais", nivel: "Fácil",
     pergunta: "O que é uma “questão polêmica” em um artigo de opinião?",
     opcoes: ["Um assunto que não permite discordância.","Um tema que gera diferentes opiniões e não tem resposta única.","Um fato histórico comprovado.","Uma opinião unânime da sociedade."],
     correta: 1,
-    justificativa: "Polêmica relaciona-se a algo que não tem uma única resposta; cada pessoa pode concordar ou discordar por diferentes razões.",
-    dica: "Polêmico = gera debate, divergência." },
+    justificativa: "Polêmica relaciona-se a algo que não tem uma única resposta; cada pessoa pode concordar ou discordar por diferentes razões." },
   { id: 13, eixo: "Gêneros Textuais", nivel: "Médio",
     pergunta: "Em um artigo de opinião, o uso de expressões como “Sou contra” e “Defendo uma sociedade” indica:",
     opcoes: ["Imparcialidade do autor.","Presença de subjetividade e posicionamento pessoal.","Uso exclusivo da terceira pessoa.","Ausência de argumentação."],
     correta: 1,
-    justificativa: "Essas expressões revelam a subjetividade e o posicionamento do autor, características do gênero.",
-    dica: "Primeira pessoa + verbos de opinião = subjetividade." },
+    justificativa: "Essas expressões revelam a subjetividade e o posicionamento do autor, características do gênero." },
   { id: 14, eixo: "Gêneros Textuais", nivel: "Difícil",
     pergunta: "“Nosso sistema penal como está não melhora as pessoas.” Esse enunciado, em um artigo de opinião, funciona como:",
     opcoes: ["Fato comprovado por pesquisa científica.","Argumento de autoridade.","Opinião do autor sobre o sistema penal.","Contra-argumento apresentado pelo opositor."],
     correta: 2,
-    justificativa: "Trata-se de uma avaliação pessoal do autor sobre o sistema penal, ou seja, uma opinião.",
-    dica: "“Não melhora” é um julgamento de valor, não um dado objetivo." },
+    justificativa: "Trata-se de uma avaliação pessoal do autor sobre o sistema penal, ou seja, uma opinião." },
   { id: 15, eixo: "Gêneros Textuais", nivel: "Fácil",
     pergunta: "Qual gênero textual tem como objetivo principal “informar” e não “opinar”?",
     opcoes: ["Artigo de opinião","Notícia","Editorial","Crônica argumentativa"],
     correta: 1,
-    justificativa: "A notícia tem compromisso com a informação objetiva, enquanto artigo de opinião e editorial são opinativos.",
-    dica: "Notícia = informar. Artigo/editorial = opinar." },
+    justificativa: "A notícia tem compromisso com a informação objetiva, enquanto artigo de opinião e editorial são opinativos." },
   { id: 16, eixo: "Gêneros Textuais", nivel: "Médio",
     pergunta: "“Para fazer bom uso do ECA é necessário dinheiro, competência e vontade.” Nesse trecho, o autor:",
     opcoes: ["Apresenta uma proposta de solução.","Narra um acontecimento.","Descreve um personagem.","Faz uma pergunta retórica."],
     correta: 0,
-    justificativa: "O autor indica o que seria necessário para aplicar corretamente o Estatuto, configurando uma proposta de solução.",
-    dica: "“É necessário...” indica uma proposta/solução." },
+    justificativa: "O autor indica o que seria necessário para aplicar corretamente o Estatuto, configurando uma proposta de solução." },
   { id: 17, eixo: "Gêneros Textuais", nivel: "Difícil",
     pergunta: "Qual das alternativas abaixo apresenta uma característica que diferencia o artigo de opinião do editorial?",
     opcoes: ["O artigo é assinado; o editorial geralmente não é assinado e expressa a opinião do veículo.","O artigo não tem argumentação; o editorial tem.","O editorial é sempre escrito em primeira pessoa.","O artigo de opinião nunca aborda temas polêmicos."],
     correta: 0,
-    justificativa: "O artigo de opinião é assinado e expressa a opinião de seu autor; o editorial expressa a opinião do veículo de comunicação e não é assinado.",
-    dica: "Artigo = opinião do autor. Editorial = opinião do jornal." },
+    justificativa: "O artigo de opinião é assinado e expressa a opinião de seu autor; o editorial expressa a opinião do veículo de comunicação e não é assinado." },
   { id: 18, eixo: "Gêneros Textuais", nivel: "Fácil",
     pergunta: "Um artigo de opinião geralmente aborda temas:",
     opcoes: ["Fictícios e imaginários.","Da atualidade e de relevância social.","Exclusivamente científicos.","Apenas sobre entretenimento."],
     correta: 1,
-    justificativa: "O artigo de opinião escolhe temas da atualidade e de relevância social, como política, educação, violência, etc..",
-    dica: "Pense em assuntos que estão no jornal de hoje." },
+    justificativa: "O artigo de opinião escolhe temas da atualidade e de relevância social, como política, educação, violência, etc." },
   { id: 19, eixo: "Gêneros Textuais", nivel: "Médio",
     pergunta: "“Problemas complexos não serão superados de modo simplório e imediatista.” Nesse enunciado, o autor:",
     opcoes: ["Faz uma afirmação objetiva e comprovável.","Emite uma opinião avaliativa sobre soluções simplistas.","Relata um fato histórico.","Apresenta dados estatísticos."],
     correta: 1,
-    justificativa: "O autor avalia negativamente soluções “simplórias e imediatistas”, o que configura uma opinião.",
-    dica: "“Simplório” e “imediatista” são juízos de valor." },
+    justificativa: "O autor avalia negativamente soluções “simplórias e imediatistas”, o que configura uma opinião." },
   { id: 20, eixo: "Gêneros Textuais", nivel: "Difícil",
     pergunta: "Qual das estratégias abaixo NÃO é típica da argumentação em artigo de opinião?",
     opcoes: ["Apresentar dados e pesquisas para embasar a tese.","Usar exemplos e comparações.","Narrar uma história longa e fictícia.","Refutar opiniões contrárias."],
     correta: 2,
-    justificativa: "Narrar uma história longa e fictícia não é estratégia argumentativa típica do artigo de opinião, que se concentra em argumentos e refutações.",
-    dica: "Artigo de opinião argumenta, não conta histórias longas." },
+    justificativa: "Narrar uma história longa e fictícia não é estratégia argumentativa típica do artigo de opinião, que se concentra em argumentos e refutações." },
   { id: 21, eixo: "Fato x Opinião", nivel: "Fácil",
     pergunta: "O que é um FATO?",
     opcoes: ["Uma avaliação pessoal sobre algo.","Um acontecimento que pode ser comprovado por fontes confiáveis.","Um julgamento de valor sem comprovação.","Uma crença pessoal inquestionável."],
     correta: 1,
-    justificativa: "Fato é um acontecimento que pode ser comprovado por meio de uma fonte confiável, documentos, fotos, estatísticas, vídeos ou autoridade.",
-    dica: "Fato = comprovável. Opinião = interpretação." },
+    justificativa: "Fato é um acontecimento que pode ser comprovado por meio de uma fonte confiável: documentos, fotos, estatísticas, vídeos ou autoridade." },
   { id: 22, eixo: "Fato x Opinião", nivel: "Fácil",
     pergunta: "O que é uma OPINIÃO?",
     opcoes: ["Um dado verificável por documentos.","Um ponto de vista a respeito de um fato.","Uma estatística oficial.","Uma data histórica comprovada."],
     correta: 1,
-    justificativa: "A opinião é um ponto de vista a respeito de um fato; ela não é, portanto, um fato.",
-    dica: "Opinião = o que alguém pensa sobre um fato." },
+    justificativa: "A opinião é um ponto de vista a respeito de um fato; ela não é, portanto, um fato." },
   { id: 23, eixo: "Fato x Opinião", nivel: "Médio",
     pergunta: "“A temperatura atingiu 32°C em São Paulo às 15h de 10 de março de 2024.” Essa frase é:",
     opcoes: ["Fato, pois é verificável por dados meteorológicos.","Opinião, pois depende de quem mediu.","Opinião, pois usa linguagem subjetiva.","Fato, mas não pode ser comprovado."],
     correta: 0,
-    justificativa: "Trata-se de um fato, pois é uma informação verificável por dados, observação ou fontes confiáveis.",
-    dica: "Tem data, hora e valor exato: é fato." },
+    justificativa: "Trata-se de um fato, pois é uma informação verificável por dados, observação ou fontes confiáveis." },
   { id: 24, eixo: "Fato x Opinião", nivel: "Médio",
     pergunta: "“O Toyota Corolla Cross é vendido a partir de 150 mil reais. Ele é mais bonito que o concorrente.” Nesse trecho:",
     opcoes: ["As duas frases são fatos.","A primeira é opinião e a segunda é fato.","A primeira é fato e a segunda é opinião.","As duas frases são opiniões."],
     correta: 2,
-    justificativa: "O preço é um fato verificável; “mais bonito” é uma avaliação subjetiva, portanto, opinião.",
-    dica: "Preço = fato. Beleza = opinião." },
+    justificativa: "O preço é um fato verificável; “mais bonito” é uma avaliação subjetiva, portanto, opinião." },
   { id: 25, eixo: "Fato x Opinião", nivel: "Difícil",
     pergunta: "“Houve um aumento de cirurgias plásticas para perda de peso no Brasil no último ano.” Essa afirmação é:",
     opcoes: ["Opinião, pois não pode ser comprovada.","Fato, pois é verificável por estatísticas e relatórios médicos.","Opinião, pois expressa julgamento de valor.","Fato, mas depende da opinião dos cirurgiões."],
     correta: 1,
-    justificativa: "É um fato, pois pode ser comprovado por estatísticas, documentos e relatórios oficiais.",
-    dica: "“Aumento” pode ser medido por números: fato." },
+    justificativa: "É um fato, pois pode ser comprovado por estatísticas, documentos e relatórios oficiais." },
   { id: 26, eixo: "Fato x Opinião", nivel: "Fácil",
     pergunta: "Qual das frases abaixo expressa uma OPINIÃO?",
     opcoes: ["O Brasil foi descoberto em 1500.","A água ferve a 100°C ao nível do mar.","Esse filme é o melhor de todos os tempos.","São Paulo é a maior cidade do Brasil."],
     correta: 2,
-    justificativa: "“Melhor de todos os tempos” é um julgamento de valor, portanto, opinião. As demais são fatos verificáveis.",
-    dica: "“Melhor” é palavra avaliativa: opinião." },
+    justificativa: "“Melhor de todos os tempos” é um julgamento de valor, portanto, opinião. As demais são fatos verificáveis." },
   { id: 27, eixo: "Fato x Opinião", nivel: "Médio",
     pergunta: "“A cota, entretanto, não é o suficiente para garantir que os partidos alavanquem as candidatas.” Esse trecho é:",
     opcoes: ["Fato, pois é uma regra eleitoral.","Opinião, pois expressa avaliação sobre a eficácia da cota.","Fato, pois pode ser comprovado por lei.","Opinião, pois relata um acontecimento."],
     correta: 1,
-    justificativa: "A afirmação de que a cota “não é o suficiente” é uma avaliação do autor, ou seja, uma opinião.",
-    dica: "“Não é o suficiente” é um julgamento, não um dado." },
+    justificativa: "A afirmação de que a cota “não é o suficiente” é uma avaliação do autor, ou seja, uma opinião." },
   { id: 28, eixo: "Fato x Opinião", nivel: "Difícil",
     pergunta: "“O número de casos de dengue aumentou em 2020.” Essa frase é um fato porque:",
     opcoes: ["Usa linguagem formal.","Pode ser verificada por boletins de saúde.","Foi dita por um médico.","Está em um artigo de opinião."],
     correta: 1,
-    justificativa: "É um fato porque pode ser comprovado por dados objetivos, como boletins de saúde.",
-    dica: "Se há boletins que comprovam, é fato." },
+    justificativa: "É um fato porque pode ser comprovado por dados objetivos, como boletins de saúde." },
   { id: 29, eixo: "Fato x Opinião", nivel: "Fácil",
     pergunta: "“Eu acho que a educação é o caminho para um país melhor.” Essa frase é:",
     opcoes: ["Fato, pois todos concordam.","Opinião, pois expressa crença pessoal.","Fato, pois é comprovável.","Opinião, pois é uma pergunta."],
     correta: 1,
-    justificativa: "“Eu acho” é marcador explícito de opinião, expressando crença pessoal do enunciador.",
-    dica: "“Eu acho” = opinião." },
+    justificativa: "“Eu acho” é marcador explícito de opinião, expressando crença pessoal do enunciador." },
   { id: 30, eixo: "Fato x Opinião", nivel: "Médio",
     pergunta: "“O artigo I, Seção 1, da Constituição dos EUA especifica que o ramo legislativo consiste no Senado e na Câmara.” Essa afirmação é:",
     opcoes: ["Opinião, pois interpreta a lei.","Fato, pois é verificável no texto constitucional.","Opinião, pois é política.","Fato, mas depende de opinião jurídica."],
     correta: 1,
-    justificativa: "É um fato, pois pode ser conferido diretamente no texto da Constituição, fonte confiável.",
-    dica: "Se está escrito na Constituição, é fato verificável." },
+    justificativa: "É um fato, pois pode ser conferido diretamente no texto da Constituição, fonte confiável." },
   { id: 31, eixo: "Fato x Opinião", nivel: "Difícil",
     pergunta: "Em um artigo de opinião, quando o autor afirma “Sou contra toda e qualquer forma de impunidade”, ele está:",
     opcoes: ["Apresentando um fato jurídico.","Emitindo uma opinião sobre um valor.","Narrando um acontecimento.","Descrevendo um procedimento."],
     correta: 1,
-    justificativa: "“Sou contra” é marca de posicionamento pessoal e valorativo, portanto, opinião.",
-    dica: "“Sou contra” = opinião." },
+    justificativa: "“Sou contra” é marca de posicionamento pessoal e valorativo, portanto, opinião." },
   { id: 32, eixo: "Fato x Opinião", nivel: "Fácil",
     pergunta: "Qual palavra abaixo geralmente indica OPINIÃO?",
     opcoes: ["Mediu","Registrou","Infelizmente","Datou"],
     correta: 2,
-    justificativa: "“Infelizmente” expressa avaliação/emoção, típica de opinião. As demais indicam ações factuais.",
-    dica: "Advérbios de avaliação como “infelizmente” indicam opinião." },
+    justificativa: "“Infelizmente” expressa avaliação/emoção, típica de opinião. As demais indicam ações factuais." },
   { id: 33, eixo: "Fato x Opinião", nivel: "Médio",
     pergunta: "“Um acidente ocorreu na manhã de ontem.” Essa frase é:",
     opcoes: ["Fato, pois relata um acontecimento verificável.","Opinião, pois depende de testemunhas.","Opinião, pois usa linguagem subjetiva.","Fato, mas não pode ser comprovado."],
     correta: 0,
-    justificativa: "É um fato, pois relata um acontecimento que pode ser verificado por meio de fontes confiáveis.",
-    dica: "Ocorreu = aconteceu. Acontecimento = fato." },
+    justificativa: "É um fato, pois relata um acontecimento que pode ser verificado por meio de fontes confiáveis." },
   { id: 34, eixo: "Fato x Opinião", nivel: "Difícil",
     pergunta: "“O racismo velado ainda persiste no Brasil.” Nesse enunciado, o autor:",
     opcoes: ["Apresenta um dado estatístico.","Faz uma afirmação que pode ser comprovada por pesquisas e relatos.","Emite uma opinião sem qualquer base.","Narra um fato histórico."],
     correta: 1,
-    justificativa: "A afirmação pode ser embasada por pesquisas, denúncias e estudos, aproximando-se de um fato social comprovável, embora o termo “velado” tenha carga avaliativa.",
-    dica: "Existem dados sobre racismo? Se sim, pode ser fato." },
+    justificativa: "A afirmação pode ser embasada por pesquisas, denúncias e estudos, aproximando-se de um fato social comprovável, embora o termo “velado” tenha carga avaliativa." },
   { id: 35, eixo: "Fato x Opinião", nivel: "Fácil",
     pergunta: "“O governo deveria investir mais em educação.” Essa frase é:",
     opcoes: ["Fato, pois todos concordam.","Opinião, pois expressa um dever ser.","Fato, pois é uma necessidade.","Opinião, pois é uma pergunta."],
     correta: 1,
-    justificativa: "“Deveria” expressa um julgamento de valor sobre o que é certo ou desejável, configurando opinião.",
-    dica: "“Deveria” = juízo de valor = opinião." },
+    justificativa: "“Deveria” expressa um julgamento de valor sobre o que é certo ou desejável, configurando opinião." },
   { id: 36, eixo: "Fato x Opinião", nivel: "Médio",
     pergunta: "“A educação no Brasil tem sido discutida cada vez mais, uma vez que ela é o principal aspecto de desenvolvimento de uma nação.” O trecho “ela é o principal aspecto” indica:",
     opcoes: ["Fato comprovado por pesquisas.","Opinião do autor sobre a importância da educação.","Dado estatístico.","Relato de experiência."],
     correta: 1,
-    justificativa: "“Principal aspecto” é uma avaliação de valor, portanto, opinião.",
-    dica: "“Principal” = julgamento = opinião." },
+    justificativa: "“Principal aspecto” é uma avaliação de valor, portanto, opinião." },
   { id: 37, eixo: "Fato x Opinião", nivel: "Difícil",
     pergunta: "Em “Enquanto nosso governo investe na expansão econômica e financeira do país, a educação regride”, o autor:",
     opcoes: ["Apresenta dois fatos objetivos.","Contrapõe um fato a uma opinião.","Apresenta uma opinião sobre dois fatos.","Narra uma história fictícia."],
     correta: 2,
-    justificativa: "A frase pressupõe fatos (investimento e regressão), mas os apresenta de forma avaliativa, com juízo de valor sobre a prioridade do governo.",
-    dica: "O autor está interpretando os fatos, não apenas informando." },
+    justificativa: "A frase pressupõe fatos (investimento e regressão), mas os apresenta de forma avaliativa, com juízo de valor sobre a prioridade do governo." },
   { id: 38, eixo: "Fato x Opinião", nivel: "Fácil",
     pergunta: "“O crack causa dependência.” Essa frase é:",
     opcoes: ["Fato, pois é comprovado cientificamente.","Opinião, pois depende do usuário.","Opinião, pois é um julgamento moral.","Fato, mas não pode ser comprovado."],
     correta: 0,
-    justificativa: "É um fato comprovado pela medicina e pela ciência sobre os efeitos da substância.",
-    dica: "Ciência comprova: fato." },
+    justificativa: "É um fato comprovado pela medicina e pela ciência sobre os efeitos da substância." },
   { id: 39, eixo: "Fato x Opinião", nivel: "Médio",
     pergunta: "“Infelizmente, o governo é negligente com a educação.” Nessa frase, o termo “infelizmente” indica:",
     opcoes: ["Fato.","Opinião.","Dado estatístico.","Narração."],
     correta: 1,
-    justificativa: "“Infelizmente” é um advérbio de avaliação, que expressa a opinião do enunciador sobre o fato.",
-    dica: "Palavras que expressam emoção/avaliação = opinião." },
+    justificativa: "“Infelizmente” é um advérbio de avaliação, que expressa a opinião do enunciador sobre o fato." },
   { id: 40, eixo: "Fato x Opinião", nivel: "Difícil",
     pergunta: "“Mesmo séculos depois, ainda é possível nos depararmos com um racismo velado no Brasil.” Nesse trecho, o autor:",
     opcoes: ["Apresenta um fato histórico datado.","Emite uma opinião baseada em percepção social.","Descreve um experimento científico.","Narra uma experiência pessoal."],
     correta: 1,
-    justificativa: "“Racismo velado” é uma interpretação da realidade social, configurando opinião, ainda que embasada em percepções compartilhadas.",
-    dica: "“Velado” é uma avaliação: opinião." },
+    justificativa: "“Racismo velado” é uma interpretação da realidade social, configurando opinião, ainda que embasada em percepções compartilhadas." },
   { id: 41, eixo: "Linguagem Formal x Informal", nivel: "Fácil",
     pergunta: "O que caracteriza a linguagem FORMAL?",
     opcoes: ["Uso livre de gírias e abreviações.","Respeito às normas gramaticais e vocabulário culto.","Frases curtas e descontraídas.","Uso de “tá”, “pra” e “né”."],
     correta: 1,
-    justificativa: "A linguagem formal é a que se considera a norma culta para se expressar, com respeito às regras gramaticais.",
-    dica: "Formal = norma culta = regras gramaticais." },
+    justificativa: "A linguagem formal é a que se considera a norma culta para se expressar, com respeito às regras gramaticais." },
   { id: 42, eixo: "Linguagem Formal x Informal", nivel: "Fácil",
     pergunta: "O que caracteriza a linguagem INFORMAL?",
     opcoes: ["Uso rigoroso da gramática normativa.","Liberdade e espontaneidade, sem preocupação com a norma padrão.","Vocabulário técnico e rebuscado.","Uso obrigatório de pronomes de tratamento."],
     correta: 1,
-    justificativa: "A linguagem informal é livre, segue somente a necessidade de comunicação, sem se prender à norma padrão.",
-    dica: "Informal = livre = sem preocupação com regras rígidas." },
+    justificativa: "A linguagem informal é livre, segue somente a necessidade de comunicação, sem se prender à norma padrão." },
   { id: 43, eixo: "Linguagem Formal x Informal", nivel: "Médio",
     pergunta: "“O Doutô Armando foi até a esquina esperá o filho.” Essa frase é exemplo de:",
     opcoes: ["Linguagem formal.","Linguagem informal.","Linguagem técnica.","Linguagem literária."],
     correta: 1,
-    justificativa: "O uso de “Doutô” e “esperá” (em vez de “Doutor” e “esperar”) é marca típica da linguagem informal.",
-    dica: "Palavras cortadas e pronúncia coloquial = informal." },
+    justificativa: "O uso de “Doutô” e “esperá” (em vez de “Doutor” e “esperar”) é marca típica da linguagem informal." },
   { id: 44, eixo: "Linguagem Formal x Informal", nivel: "Médio",
     pergunta: "Qual frase está em linguagem FORMAL?",
     opcoes: ["Vou pra casa agora.","Eu vou para casa agora.","Tô indo pra casa.","Vô pra casa."],
     correta: 1,
-    justificativa: "“Eu vou para casa agora” respeita a norma culta, com pronome e preposição completos. As demais são reduções informais.",
-    dica: "Formal usa “para”, “eu”, sem reduções." },
+    justificativa: "“Eu vou para casa agora” respeita a norma culta, com pronome e preposição completos. As demais são reduções informais." },
   { id: 45, eixo: "Linguagem Formal x Informal", nivel: "Difícil",
     pergunta: "Em um e-mail profissional, qual opção é adequada?",
     opcoes: ["E aí, chefe, manda as parada aí.","Prezado, anexei a este e-mail o ofício referente à requisição solicitada.","Oi, tudo bom? Segue os trem aí.","Véi, preciso daquilo urgente."],
     correta: 1,
-    justificativa: "“Prezado, anexei...” é exemplo de linguagem formal, adequada a contextos profissionais.",
-    dica: "E-mail profissional pede tratamento formal e norma culta." },
+    justificativa: "“Prezado, anexei...” é exemplo de linguagem formal, adequada a contextos profissionais." },
   { id: 46, eixo: "Linguagem Formal x Informal", nivel: "Fácil",
     pergunta: "“Manda ver!” é uma expressão típica de:",
     opcoes: ["Linguagem formal.","Linguagem informal.","Linguagem jurídica.","Linguagem científica."],
     correta: 1,
-    justificativa: "“Manda ver!” é gíria, marca de informalidade e coloquialidade.",
-    dica: "Gíria = informal." },
+    justificativa: "“Manda ver!” é gíria, marca de informalidade e coloquialidade." },
   { id: 47, eixo: "Linguagem Formal x Informal", nivel: "Médio",
     pergunta: "“Se a educação sozinha não transforma a sociedade, sem ela tampouco a sociedade muda.” Esse trecho, atribuído a Paulo Freire, usa qual tipo de linguagem?",
     opcoes: ["Informal, pois tem gírias.","Formal, com vocabulário culto e estrutura cuidada.","Técnica, com termos científicos.","Regional, com expressões locais."],
     correta: 1,
-    justificativa: "O trecho apresenta estrutura sintática elaborada e vocabulário formal, típico de citações de autores renomados.",
-    dica: "Citação de autor = geralmente formal." },
+    justificativa: "O trecho apresenta estrutura sintática elaborada e vocabulário formal, típico de citações de autores renomados." },
   { id: 48, eixo: "Linguagem Formal x Informal", nivel: "Difícil",
     pergunta: "“Vossa Excelência participou da reunião.” Essa frase exemplifica:",
     opcoes: ["Linguagem informal.","Linguagem formal com pronome de tratamento.","Linguagem regional.","Linguagem coloquial."],
     correta: 1,
-    justificativa: "“Vossa Excelência” é pronome de tratamento típico da linguagem formal e cerimoniosa.",
-    dica: "Pronomes de tratamento = formalidade." },
+    justificativa: "“Vossa Excelência” é pronome de tratamento típico da linguagem formal e cerimoniosa." },
   { id: 49, eixo: "Linguagem Formal x Informal", nivel: "Médio",
     pergunta: "“Tá aqui seu dinheiro. Já sabe em quem votar, né?” Esse trecho é exemplo de:",
     opcoes: ["Linguagem formal.","Linguagem informal.","Linguagem técnica.","Linguagem literária."],
     correta: 1,
-    justificativa: "O uso de “tá” (em vez de “está”) e “né” (em vez de “não é”) são marcas claras de informalidade.",
-    dica: "“Tá” e “né” = informal." },
+    justificativa: "O uso de “tá” (em vez de “está”) e “né” (em vez de “não é”) são marcas claras de informalidade." },
   { id: 50, eixo: "Linguagem Formal x Informal", nivel: "Difícil",
     pergunta: "“A análise revelou resultados significativos.” Em vez de “Os resultados foram importantes.” A primeira frase é mais adequada em qual contexto?",
     opcoes: ["Conversa entre amigos.","Relatório acadêmico ou profissional.","Mensagem de celular para familiar.","Bate-papo em rede social."],
     correta: 1,
-    justificativa: "“Revelou resultados significativos” é uma formulação mais formal e precisa, adequada a contextos acadêmicos e profissionais.",
-    dica: "Linguagem mais elaborada = contexto formal/profissional." }
+    justificativa: "“Revelou resultados significativos” é uma formulação mais formal e precisa, adequada a contextos acadêmicos e profissionais." }
 ];
+
+// ============================================================
+// AULAS (mini-explicações antes de cada bloco)
+// ============================================================
+const lessons = {
+  "Gêneros Textuais": {
+    titulo: "📚 Gêneros Textuais e o Artigo de Opinião",
+    conteudo: `
+      <p>Antes de responder às questões deste bloco, vamos revisar o conteúdo. <strong>Leia com atenção</strong> — as perguntas seguem exatamente essa matéria.</p>
+
+      <h4>O que são gêneros textuais?</h4>
+      <p>São <strong>formas de texto que circulam na sociedade</strong>, cada uma com uma função específica. Exemplos: notícia, receita, bilhete, carta, crônica, editorial, <strong>artigo de opinião</strong>…</p>
+
+      <h4>Foco: Artigo de Opinião</h4>
+      <p>É um gênero <strong>argumentativo</strong> em que o autor defende uma <strong>tese</strong> (seu ponto de vista) sobre um <strong>tema polêmico</strong>. Suas principais características:</p>
+      <ul>
+        <li>É <strong>assinado</strong> — tem "dono", a opinião é do autor;</li>
+        <li>Trabalha com <strong>temas da atualidade</strong> e de relevância social;</li>
+        <li>Usa <strong>argumentos</strong> (dados, exemplos, comparações, citações, refutações);</li>
+        <li>Circula em <strong>jornais, revistas e blogs</strong>;</li>
+        <li>Estrutura típica: <strong>introdução (tese) → desenvolvimento (argumentos) → conclusão</strong>.</li>
+      </ul>
+
+      <h4>Não confunda!</h4>
+      <div class="lesson-box">
+        <strong>Notícia</strong> → objetiva, informativa, imparcial.<br>
+        <strong>Editorial</strong> → opinião do <em>veículo de comunicação</em>; <em>não é assinado</em>.<br>
+        <strong>Artigo de opinião</strong> → opinião do <em>autor</em>; <em>é assinado</em>.
+      </div>
+
+      <h4>Marcas linguísticas do artigo de opinião</h4>
+      <ul>
+        <li>Verbos em <strong>1ª pessoa</strong>: "sou contra", "defendo", "acredito";</li>
+        <li><strong>Adjetivos avaliativos</strong>: brutal, injusto, necessário, simplório;</li>
+        <li><strong>Operadores argumentativos</strong>: porque, portanto, no entanto, entretanto;</li>
+        <li>Uso de <strong>linguagem figurada</strong> para enfatizar ideias (ex.: "reacendeu uma fogueira" = acendeu uma polêmica).</li>
+      </ul>
+
+      <h4>Estratégias argumentativas comuns</h4>
+      <ul>
+        <li>Apresentar a <strong>opinião contrária</strong> e depois <strong>refutá-la</strong>;</li>
+        <li>Trazer <strong>dados e pesquisas</strong> para embasar a tese;</li>
+        <li>Usar <strong>exemplos, comparações e citações</strong> de autoridade;</li>
+        <li>Propor <strong>soluções</strong> para o problema discutido.</li>
+      </ul>
+
+      <div class="lesson-warn">
+        ⚠️ <strong>Atenção:</strong> narrar uma longa história fictícia <em>não</em> é estratégia típica do artigo de opinião — o foco é argumentar, não contar histórias.
+      </div>
+    `
+  },
+  "Fato x Opinião": {
+    titulo: "⚖️ Fato x Opinião",
+    conteudo: `
+      <p>Agora vamos revisar como <strong>diferenciar fato de opinião</strong>. Esse é um conteúdo-chave para ler textos com senso crítico.</p>
+
+      <h4>O que é FATO?</h4>
+      <p>É um <strong>acontecimento verificável</strong>, que pode ser comprovado por fontes confiáveis: documentos, estatísticas, registros, fotos, vídeos, ciência.</p>
+      <div class="lesson-example">"A temperatura atingiu 32°C em São Paulo em 10/03/2024."</div>
+      <div class="lesson-example">"A água ferve a 100°C ao nível do mar."</div>
+      <div class="lesson-example">"O crack causa dependência." (comprovado cientificamente)</div>
+
+      <h4>O que é OPINIÃO?</h4>
+      <p>É um <strong>ponto de vista</strong> — expressa julgamento, avaliação, crença ou interpretação. <strong>Não é comprovável objetivamente.</strong></p>
+      <div class="lesson-example">"Esse filme é o melhor de todos os tempos."</div>
+      <div class="lesson-example">"O governo deveria investir mais em educação."</div>
+      <div class="lesson-example">"Infelizmente, a situação é grave."</div>
+
+      <h4>Palavras que costumam indicar OPINIÃO</h4>
+      <div class="lesson-box">
+        melhor • pior • mais bonito • infelizmente • felizmente • deveria • acho que • sou contra • sou a favor • principal • suficiente • simplório • negligente
+      </div>
+
+      <h4>Pergunta-chave para identificar</h4>
+      <div class="lesson-warn">
+        🔑 <strong>Essa frase pode ser comprovada</strong> por documento, estatística ou ciência?<br>
+        → <strong>Se sim</strong> = <strong>FATO</strong>.<br>
+        → <strong>Se depende de interpretação</strong> = <strong>OPINIÃO</strong>.
+      </div>
+
+      <h4>Cuidado: muitos textos misturam os dois</h4>
+      <p>É comum uma frase ter uma parte factual e outra avaliativa. Exemplo:</p>
+      <div class="lesson-example">"O número de casos aumentou <strong>(fato)</strong> e isso é preocupante <strong>(opinião)</strong>."</div>
+      <p>Nesses casos, é preciso separar cada parte para classificá-la corretamente.</p>
+    `
+  },
+  "Linguagem Formal x Informal": {
+    titulo: "💬 Linguagem Formal x Informal",
+    conteudo: `
+      <p>Por último, vamos revisar a diferença entre <strong>linguagem formal</strong> e <strong>linguagem informal</strong> — e, principalmente, quando usar cada uma.</p>
+
+      <h4>Linguagem FORMAL (norma culta)</h4>
+      <ul>
+        <li>Respeita as <strong>regras gramaticais</strong>;</li>
+        <li>Vocabulário <strong>elaborado e preciso</strong>;</li>
+        <li><strong>Sem gírias</strong>, sem abreviações, sem reduções ("pra", "tá", "né");</li>
+        <li>Uso de <strong>pronomes de tratamento</strong>: Vossa Excelência, Senhor, Prezado;</li>
+        <li>Estruturas sintáticas cuidadas.</li>
+      </ul>
+      <p><strong>Contextos adequados:</strong> redações, e-mails profissionais, relatórios, artigos, discursos, documentos oficiais.</p>
+
+      <h4>Linguagem INFORMAL (coloquial)</h4>
+      <ul>
+        <li>Mais <strong>livre e espontânea</strong>;</li>
+        <li>Uso de <strong>gírias</strong>, expressões regionais, reduções;</li>
+        <li>Frases mais curtas e diretas;</li>
+        <li>Marcas típicas: "tá", "pra", "né", "vô", "tô", "manda ver", "e aí".</li>
+      </ul>
+      <p><strong>Contextos adequados:</strong> conversas entre amigos, redes sociais, mensagens pessoais.</p>
+
+      <h4>Marcas da informalidade (exemplos)</h4>
+      <div class="lesson-example">"O <strong>Doutô</strong> foi até a esquina <strong>esperá</strong> o filho." (supressão do "r" no infinitivo)</div>
+      <div class="lesson-example">"<strong>Tá</strong> aqui seu dinheiro. Já sabe em quem votar, <strong>né</strong>?"</div>
+      <div class="lesson-example">"<strong>Vô</strong> pra casa agora."</div>
+
+      <h4>Marcas da formalidade (exemplos)</h4>
+      <div class="lesson-example">"<strong>Eu vou para</strong> casa agora."</div>
+      <div class="lesson-example">"<strong>Vossa Excelência</strong> participou da reunião."</div>
+      <div class="lesson-example">"<strong>Prezado</strong>, anexei a este e-mail o ofício solicitado."</div>
+
+      <div class="lesson-warn">
+        ⚠️ <strong>Muito importante:</strong> nenhuma das duas é "certa" ou "errada". O que existe é <strong>adequação ao contexto</strong>. Usar gíria em uma redação é inadequado; usar linguagem rebuscada com amigos pode soar estranho. Saber escolher é o que importa.
+      </div>
+    `
+  }
+};
 
 // ============================================================
 // PLAYER DE MÚSICA
@@ -808,33 +897,25 @@ const volIcon = document.getElementById('volIcon');
 const trackInfo = document.getElementById('trackInfo');
 const autoplayNotice = document.getElementById('autoplayNotice');
 
-// Volume inicial (50%)
 bgMusic.volume = 0.5;
 
-// Tentar autoplay ao carregar
 function tryAutoplay() {
-  const playPromise = bgMusic.play();
-  if (playPromise !== undefined) {
-    playPromise.then(() => {
-      // Autoplay funcionou
+  const p = bgMusic.play();
+  if (p !== undefined) {
+    p.then(() => {
       playPauseBtn.textContent = '⏸';
       trackInfo.classList.remove('paused');
       autoplayNotice.classList.remove('show');
     }).catch(() => {
-      // Autoplay bloqueado pelo navegador
       playPauseBtn.textContent = '▶';
       trackInfo.classList.add('paused');
       autoplayNotice.classList.add('show');
     });
   }
 }
-
-// Chamar autoplay assim que a página carregar
 window.addEventListener('load', tryAutoplay);
-// Tentar também imediatamente (algumas vezes funciona antes do load)
 tryAutoplay();
 
-// Fallback: tocar no primeiro clique do usuário em qualquer lugar
 function firstInteraction() {
   if (bgMusic.paused) {
     bgMusic.play().then(() => {
@@ -851,9 +932,8 @@ document.addEventListener('click', firstInteraction);
 document.addEventListener('touchstart', firstInteraction);
 document.addEventListener('keydown', firstInteraction);
 
-// Botão Play/Pause
 playPauseBtn.addEventListener('click', (e) => {
-  e.stopPropagation(); // não acionar o firstInteraction
+  e.stopPropagation();
   if (bgMusic.paused) {
     bgMusic.play().then(() => {
       playPauseBtn.textContent = '⏸';
@@ -867,14 +947,12 @@ playPauseBtn.addEventListener('click', (e) => {
   }
 });
 
-// Controle de volume
 volumeSlider.addEventListener('input', (e) => {
   const vol = parseFloat(e.target.value);
   bgMusic.volume = vol;
   volumeLabel.textContent = Math.round(vol * 100) + '%';
   updateVolumeIcon(vol);
 });
-
 function updateVolumeIcon(vol) {
   if (vol === 0) volIcon.textContent = '🔇';
   else if (vol < 0.4) volIcon.textContent = '🔉';
@@ -882,7 +960,6 @@ function updateVolumeIcon(vol) {
 }
 updateVolumeIcon(0.5);
 
-// Clique no aviso de autoplay
 autoplayNotice.addEventListener('click', () => {
   bgMusic.play().then(() => {
     playPauseBtn.textContent = '⏸';
@@ -891,7 +968,6 @@ autoplayNotice.addEventListener('click', () => {
   }).catch(() => {});
 });
 
-// Sincronizar botão caso a música termine ou seja pausada por fora
 bgMusic.addEventListener('play', () => {
   playPauseBtn.textContent = '⏸';
   trackInfo.classList.remove('paused');
@@ -902,80 +978,201 @@ bgMusic.addEventListener('pause', () => {
 });
 
 // ============================================================
-// LÓGICA DO QUIZ
+// MODAL DICA GERAL
 // ============================================================
-const quizContainer = document.getElementById('quizContainer');
-const submitBtn = document.getElementById('submitBtn');
+const dicaGeralModal = document.getElementById('dicaGeralModal');
+document.getElementById('abrirDicaGeral').addEventListener('click', () => {
+  dicaGeralModal.classList.add('show');
+  document.body.style.overflow = 'hidden';
+});
+document.getElementById('fecharDicaGeral').addEventListener('click', () => {
+  dicaGeralModal.classList.remove('show');
+  document.body.style.overflow = '';
+});
+dicaGeralModal.addEventListener('click', (e) => {
+  if (e.target === dicaGeralModal) {
+    dicaGeralModal.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+});
+
+// ============================================================
+// LÓGICA DO QUIZ — AULAS + UMA QUESTÃO POR VEZ
+// ============================================================
+const questionArea = document.getElementById('questionArea');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const finishBtn = document.getElementById('finishBtn');
 const progressFill = document.getElementById('progressFill');
 const progressText = document.getElementById('progressText');
+const progressPct = document.getElementById('progressPct');
 const resultsContainer = document.getElementById('resultsContainer');
-const actionsDiv = document.getElementById('actions');
+const navButtons = document.getElementById('navButtons');
 
-let answers = {};
+const eixosOrdem = ["Gêneros Textuais", "Fato x Opinião", "Linguagem Formal x Informal"];
 
-function renderQuestions() {
-  let html = '';
-  questions.forEach((q, idx) => {
-    const nivelClass = q.nivel === 'Fácil' ? 'badge-facil' : q.nivel === 'Médio' ? 'badge-medio' : 'badge-dificil';
-    html += `
-      <div class="question-card" id="q-${q.id}">
-        <div class="question-header">
-          <span class="question-number">Questão ${idx + 1}</span>
-          <div style="display:flex; gap:6px; flex-wrap:wrap;">
-            <span class="badge badge-eixo">${q.eixo}</span>
-            <span class="badge ${nivelClass}">${q.nivel}</span>
-          </div>
-        </div>
-        <p class="question-text">${q.pergunta}</p>
-        <div class="options" id="opts-${q.id}">
-          ${q.opcoes.map((op, i) => `
-            <div class="option" data-qid="${q.id}" data-opt="${i}">
-              <input type="radio" name="q${q.id}" id="q${q.id}o${i}" value="${i}">
-              <label for="q${q.id}o${i}">${String.fromCharCode(65 + i)}) ${op}</label>
-            </div>
-          `).join('')}
-        </div>
-        <button class="dica-btn" data-dica="${q.id}">💡 Dica</button>
-        <div class="dica-box" id="dica-${q.id}">${q.dica}</div>
+let currentIndex = 0;
+let view = 'lesson'; // 'lesson' | 'question'
+const answers = {};
+
+// -------------------- AULA --------------------
+function renderLesson() {
+  const eixo = questions[currentIndex].eixo;
+  const lesson = lessons[eixo];
+  const lessonNum = eixosOrdem.indexOf(eixo) + 1;
+  const totalAulas = eixosOrdem.length;
+
+  questionArea.innerHTML = `
+    <div class="lesson-card">
+      <span class="lesson-badge">📖 Aula ${lessonNum} de ${totalAulas}</span>
+      <h2>${lesson.titulo}</h2>
+      ${lesson.conteudo}
+      <div class="lesson-nav">
+        <button class="btn btn-secondary" id="lessonPrevBtn" ${currentIndex === 0 ? 'disabled' : ''}>◀ Voltar</button>
+        <button class="btn btn-success" id="lessonStartBtn">Começar questões ▶</button>
+      </div>
+    </div>
+  `;
+
+  // Esconder a navegação principal durante a aula
+  navButtons.classList.add('hidden');
+
+  // Botão Voltar da aula
+  document.getElementById('lessonPrevBtn').addEventListener('click', () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      view = 'question';
+      renderQuestion();
+    }
+  });
+
+  // Botão Começar questões
+  document.getElementById('lessonStartBtn').addEventListener('click', () => {
+    view = 'question';
+    renderQuestion();
+  });
+
+  // Atualizar progresso
+  const answered = Object.keys(answers).length;
+  const pct = Math.round((answered / questions.length) * 100);
+  progressFill.style.width = pct + '%';
+  progressText.textContent = `📖 Aula ${lessonNum} de ${totalAulas} — ${eixo}`;
+  progressPct.textContent = 'Bloco de aulas';
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// -------------------- QUESTÃO --------------------
+function renderQuestion() {
+  navButtons.classList.remove('hidden');
+
+  const q = questions[currentIndex];
+  const nivelClass = q.nivel === 'Fácil' ? 'badge-facil'
+                   : q.nivel === 'Médio' ? 'badge-medio' : 'badge-dificil';
+  const selected = answers[q.id];
+
+  let optionsHtml = '';
+  q.opcoes.forEach((op, i) => {
+    const isSel = selected === i ? 'selected' : '';
+    optionsHtml += `
+      <div class="option ${isSel}" data-opt="${i}">
+        <input type="radio" name="q${q.id}" id="q${q.id}o${i}" value="${i}" ${selected === i ? 'checked' : ''}>
+        <label for="q${q.id}o${i}">${String.fromCharCode(65 + i)}) ${op}</label>
       </div>
     `;
   });
-  quizContainer.innerHTML = html;
 
-  document.querySelectorAll('.option').forEach(opt => {
+  questionArea.innerHTML = `
+    <div class="question-card" id="q-${q.id}">
+      <div class="question-header">
+        <span class="question-number">Questão ${currentIndex + 1} de ${questions.length}</span>
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+          <span class="badge badge-eixo">${q.eixo}</span>
+          <span class="badge ${nivelClass}">${q.nivel}</span>
+        </div>
+      </div>
+      <p class="question-text">${q.pergunta}</p>
+      <div class="options" id="opts-${q.id}">
+        ${optionsHtml}
+      </div>
+    </div>
+  `;
+
+  questionArea.querySelectorAll('.option').forEach(opt => {
     opt.addEventListener('click', () => {
-      const qid = parseInt(opt.dataset.qid);
       const optIndex = parseInt(opt.dataset.opt);
-      document.querySelectorAll(`.option[data-qid="${qid}"]`).forEach(o => o.classList.remove('selected'));
+      questionArea.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
       opt.classList.add('selected');
       opt.querySelector('input').checked = true;
-      answers[qid] = optIndex;
-      updateProgress();
+      answers[q.id] = optIndex;
+      updateNavButtons();
     });
   });
 
-  document.querySelectorAll('.dica-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const qid = btn.dataset.dica;
-      const box = document.getElementById(`dica-${qid}`);
-      box.classList.toggle('show');
-    });
-  });
+  updateProgressBar();
+  updateNavButtons();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function updateProgress() {
-  const total = questions.length;
+function updateProgressBar() {
   const answered = Object.keys(answers).length;
-  const pct = (answered / total) * 100;
+  const pct = Math.round((answered / questions.length) * 100);
   progressFill.style.width = pct + '%';
-  progressText.textContent = `${answered} de ${total} respondidas`;
-  submitBtn.disabled = answered < total;
+  progressText.textContent = `Questão ${currentIndex + 1} de ${questions.length}`;
+  progressPct.textContent = `${answered}/${questions.length} respondidas (${pct}%)`;
 }
 
-submitBtn.addEventListener('click', () => {
-  document.querySelectorAll('.option').forEach(o => o.style.pointerEvents = 'none');
-  document.querySelectorAll('.dica-btn').forEach(b => b.style.display = 'none');
-  document.querySelectorAll('.dica-box').forEach(b => b.classList.remove('show'));
+function updateNavButtons() {
+  const q = questions[currentIndex];
+  const respondida = answers[q.id] !== undefined;
+
+  prevBtn.disabled = currentIndex === 0;
+
+  if (currentIndex === questions.length - 1) {
+    nextBtn.classList.add('hidden');
+    finishBtn.classList.remove('hidden');
+    finishBtn.disabled = !respondida;
+  } else {
+    nextBtn.classList.remove('hidden');
+    finishBtn.classList.add('hidden');
+    nextBtn.disabled = !respondida;
+  }
+}
+
+// -------------------- NAVEGAÇÃO --------------------
+prevBtn.addEventListener('click', () => {
+  if (currentIndex > 0) {
+    currentIndex--;
+    renderQuestion();
+  }
+});
+
+nextBtn.addEventListener('click', () => {
+  if (currentIndex < questions.length - 1) {
+    const eixoAtual = questions[currentIndex].eixo;
+    const proximoEixo = questions[currentIndex + 1].eixo;
+
+    currentIndex++;
+
+    // Se mudou de assunto → mostra aula antes das questões do novo bloco
+    if (eixoAtual !== proximoEixo) {
+      view = 'lesson';
+      renderLesson();
+    } else {
+      view = 'question';
+      renderQuestion();
+    }
+  }
+});
+
+// ============================================================
+// FINALIZAR QUIZ
+// ============================================================
+finishBtn.addEventListener('click', () => {
+  questionArea.classList.add('hidden');
+  navButtons.classList.add('hidden');
+  document.querySelector('.progress-bar').style.display = 'none';
+  document.querySelector('.progress-info').style.display = 'none';
 
   let acertos = 0;
   let reviewHtml = '';
@@ -984,12 +1181,6 @@ submitBtn.addEventListener('click', () => {
     const userAnswer = answers[q.id];
     const isCorrect = userAnswer === q.correta;
     if (isCorrect) acertos++;
-
-    const opts = document.querySelectorAll(`.option[data-qid="${q.id}"]`);
-    opts.forEach((opt, i) => {
-      if (i === q.correta) opt.classList.add('correct');
-      if (i === userAnswer && !isCorrect) opt.classList.add('wrong');
-    });
 
     const statusClass = isCorrect ? 'correct' : 'wrong';
     const statusText = isCorrect ? '✅ Acertou' : '❌ Errou';
@@ -1042,12 +1233,14 @@ submitBtn.addEventListener('click', () => {
   }
   obsList.innerHTML = observacoes.map(o => `<li>${o}</li>`).join('');
 
-  actionsDiv.classList.add('hidden');
   resultsContainer.classList.remove('hidden');
   resultsContainer.scrollIntoView({ behavior: 'smooth' });
 });
 
-renderQuestions();
+// ============================================================
+// INICIALIZA O QUIZ — começa com a Aula 1
+// ============================================================
+renderLesson();
 </script>
 </body>
 </html>
